@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 int main(){
-    char *str ="123";
-    printf("%s",str);
+    char str1[20]="114514";
+    char *str2 ="1919810";
+    //char str3[]= *str2;
+    printf("%s\n%s\n",&str1,str2);
+    //strcpy(str1,str3);
+    //printf("strcpy(str1,str3):%s\n",str3)
 }
