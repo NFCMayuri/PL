@@ -4,11 +4,11 @@
 int baka();
 int main(){
     //char str1[20]="114514";
-    //char *str2 ="1919810";
+    ////char *str2 ="1919810";
     //char str3[]= *str2;
     //printf("%s\n%s\n",&str1,str2);
-    //strcpy(str1,str3);
-    //printf("strcpy(str1,str3):%s\n",str3)
+    ////strcpy(str1,str3);
+    ////printf("strcpy(str1,str3):%s\n",str3)
     baka();
 }
 
