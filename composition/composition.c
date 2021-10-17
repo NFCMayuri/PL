@@ -13,7 +13,6 @@ int main(int argc,char *argv[]){
     if ( argc == 1 )
     {
 	    printf("please input name\n");
-//			    baka will be used as default");
 	    //char name[] = "baka";
 	    return 0;
     }
