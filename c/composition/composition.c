@@ -28,7 +28,7 @@ int main(int argc,char *argv[]){
     return 0;
 }
 
-void write(char saying1[],char name[]){
+void write(char saying1[],const char *name){
     sprintf(saying1,"%s,my %s,I do love u so much. ",name,name);
     char saying2[]="Pls take me away";
     strcat(saying1,saying2);
