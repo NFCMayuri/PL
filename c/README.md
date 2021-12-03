@@ -6,4 +6,4 @@ cmake .. -G "MinGW Makefiles"
 make
 ```
 
-The bin will be find in ./bin/
+The bin will be find in `./bin/`
