@@ -1,8 +1,8 @@
 #include "../include/head.h"
-int w(){
+int w(const char* filename,const char* string){
     FILE *fp;
-    fp = fopen("file.txt","w");
-    fprintf(fp,"this is an %s\n","apple");
+    fp = fopen(filename,"w");
+    fprintf(fp,"%s",string);
     fclose(fp);
     return 0;
 }
