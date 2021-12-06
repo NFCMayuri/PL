@@ -1,9 +1,9 @@
 #include "../include/head.h"
-int r(){
+int r(const char* filename){
     FILE *fp = fopen("file.txt","r");
-    char a[10],b[10],c[10],d[10];
-    fscanf(fp,"%s %s %s %s",a,b,c,d);
-    printf("%s %s %s %s\n",a,b,c,d);
+    char a[100];
+    fscanf(fp,"%s",a);
+    printf("%s",a);
     fclose(fp);
     return 0;
 }
