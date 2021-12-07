@@ -1,0 +1,3 @@
+[submodule "c/GenericMakefile"]
+	path = c/GenericMakefile
+	url = https://github.com/MayuriNFC/GenericMakefile.git
