@@ -10,4 +10,3 @@ int main(){
     printf("%d\n",test1->num);
     return 0;
 }
-
