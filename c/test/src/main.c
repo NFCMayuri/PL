@@ -1,6 +1,7 @@
 #include "../include/head.h"
+#include "../include/str.h"
 int main(){
-    struct test *test1=add();
+    struct head_link *test1=add();
     test1->type[0]=1;
     strval(&(test1->name),"hello ",1);
     strval(&(test1->name),"world",2);
