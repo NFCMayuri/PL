@@ -1,36 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-void strval(char **str1,const char *str2,int type){
-    switch (type)
-    {
-        case 1 : {
-                     *str1=(char *)malloc(strlen(str2+1));
-                     sprintf(*str1,"%s",str2);
-                     printf("case 1 :%s\n",*str1);
-                     break;
-                 }
-        case 2 : {
-                     *str1 = (char *)realloc(*str1,strlen(*str1)+strlen(str2)+1);
-                 sprintf(*str1,"%s%s",*str1,str2);
-                     printf("case 2 :%s\n",*str1);
-                 }
-                     break;
-        case 3 : {
-                     free(*str1);
-                     *str1=(char *)malloc(strlen(str2+1));
-                     sprintf(*str1,"%s",str2);
-                     printf("case 3 :%s\n",*str1);
-                     break;
-                 }
-    }
-}
-struct test{
+#include "./str.h"
+struct body_link{
+    int type;
+    void *data;
+    struct body_link *next;
+};
+struct head_link{
     int type[2];
-    char  *name;
+    char *name;
+    struct body_link *head;
+    struct body_link **location;
     struct test *next;
 };
-struct test* add(){
-    struct test *temp=(struct test*)malloc(sizeof(struct test));
+struct head_link* add(){
+    struct head_link *temp=(struct head_link*)malloc(sizeof(struct head_link));
     return temp;
 }
