@@ -1,3 +1,5 @@
+#ifndef _head_hpp
+#define _head_hpp
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
@@ -22,3 +24,4 @@ struct head_link* add(){
     struct head_link *temp=(struct head_link*)malloc(sizeof(struct head_link));
     return temp;
 }
+#endif
