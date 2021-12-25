@@ -22,4 +22,5 @@ int main(){
         case '1' : printf("R=%lf\n",resistorcal(r1,r2,choice));break;
         case '2' : printf("R2=%lf\n",resistorcal(r1,r2,choice));break;
     }
+    return 0;
 }
