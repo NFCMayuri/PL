@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/resistorcal.h"
+#include "resistor/resistorcal.h"
 int main(){
     printf("Welcome to Mayuri's Resistor Calculator(Only for separate routes and 2 resistor in it)\n");
     printf("Make your choice\n> 1.Your have the two resistors of separate routes\n> 2. Your have one of the resistors in the separate routes and the total resistor\nAny other choice is to exit\n");
