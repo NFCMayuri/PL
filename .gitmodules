@@ -5,3 +5,12 @@
 [submodule "cmake/examples"]
 	path = cmake/examples
 	url = https://github.com/ttroy50/cmake-examples.git
+[submodule "submodule/cmake-examples"]
+	path = submodule/cmake-examples
+	url = https://github.com/ttroy50/cmake-examples
+[submodule "submodule/GenericMakefile"]
+	path = submodule/GenericMakefile
+	url = https://github.com/mbcrawfo/GenericMakefile
+[submodule "submodule/CMakeTutorial"]
+	path = submodule/CMakeTutorial
+	url = https://github.com/BrightXiaoHan/CMakeTutorial
