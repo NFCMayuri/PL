@@ -2,5 +2,5 @@
 #define _bubblessort_h
 #include <stdio.h>
 #include <stdlib.h>
-void *bubblesort(int *array);
+void bubblesort(int *array, int size);
 #endif
