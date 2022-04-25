@@ -1,20 +1,22 @@
 #include "../include/bubblesort.h"
 int main()
 {
-    int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int a[] = {5, 3, 7, 9, 6, 8, 1, 4, 2, 10};
     int i;
-    for (i = 0; i < sizeof(a) / sizeof(a[0]); i++)
+	int size = sizeof(a)/sizeof(a[0]);
+    for (i = 0; i < size; i++)
     {
+		bubblesort(a,10);
         printf("%d\n", a[i]);
     }
     return 0;
 }
-void *bubblesort(int array[])
+void bubblesort(int array[],int size)
 {
     int i, j, temp;
-    for (i = 0; i < sizeof(array) / sizeof(array[0]); i++)
+    for (i = 0; i < size; i++)
     {
-        for (j = 0; j < sizeof(array) / sizeof(array[0]) - i - 1; j++)
+        for (j = 0; j < size - i - 1; j++)
         {
             if (array[j] > array[j + 1])
             {
