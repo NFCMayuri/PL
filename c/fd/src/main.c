@@ -1,4 +1,4 @@
-#include "../include/head.h"
+#include "../include/fd.h"
 int main(){
     char *path="file.txt";
     int fd;

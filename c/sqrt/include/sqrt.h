@@ -1,5 +1,5 @@
-#ifndef  A_FILE_HEADER_INC
-#define  A_FILE_HEADER_INC
+#ifndef  _sqrt_h
+#define  _sqrt_h
 #include<math.h>
  
 double get_sqrt(double var1);

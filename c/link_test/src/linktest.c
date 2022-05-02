@@ -1,4 +1,4 @@
-#include "../include/head.h"
+#include "../include/linktest.h"
 int main(){
     struct test {
         char name[20];
