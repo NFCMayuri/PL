@@ -1,6 +1,6 @@
-#include "../include/head.h"
+#include "../include/linktable.h"
 
-*head_link   hcreate() {
+*head_link hcreate() {
     struct head_link *temp;
     temp = (struct head_link*)(malloc(sizeof(struct head_link)));
     temp->head = (struct body_link*)(malloc(sizeof(struct body_link)));

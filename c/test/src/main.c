@@ -1,4 +1,4 @@
-#include "../include/head.h"
+#include "../include/test.h"
 #include "../include/str.h"
 int main(){
     struct head_link *test1=add();

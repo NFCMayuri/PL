@@ -1,4 +1,4 @@
-#include "../include/head.h"
+#include "../include/fileio.h"
 int w(const char* filename,const char* string){
     FILE *fp;
     fp = fopen(filename,"w");

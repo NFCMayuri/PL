@@ -1,3 +1,5 @@
+#ifndef _test_h
+#define _test_h
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,3 +20,4 @@ struct head_link* add(){
     struct head_link *temp=(struct head_link*)malloc(sizeof(struct head_link));
     return temp;
 }
+#endif
