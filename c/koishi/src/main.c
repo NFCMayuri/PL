@@ -1,7 +1,7 @@
 #include "../include/koishi.h"
 int main(){
     char *level[4]={"easy","normal","hard","extreme"};
-    enum level l;
+    LEVEL l;
     l=getlevel();
     while (l<1||l>4){
         printf("the number you input(%d) is not listed\nplease input again:\n",l);

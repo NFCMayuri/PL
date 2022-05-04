@@ -1,6 +1,6 @@
 #include "../include/koishi.h"
-enum level getlevel(){
-    enum level l;
+LEVEL getlevel(){
+    LEVEL l;
     printf("please input the level number:\n\
     1.easy\n\
     2.normal\n\
