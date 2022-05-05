@@ -7,5 +7,6 @@ LEVEL getlevel(){
     3.hard\n\
     4.extreme\n");
     scanf("%d",&l);
+    rewind(stdin);
     return l;
 }
