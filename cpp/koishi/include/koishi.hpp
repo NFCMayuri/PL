@@ -4,10 +4,11 @@
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
-typedef enum level {
-    easy=1,
+typedef enum level
+{
+    easy = 1,
     normal,
     hard,
     extreme
-    }LEVEL;
+} LEVEL;
 #endif

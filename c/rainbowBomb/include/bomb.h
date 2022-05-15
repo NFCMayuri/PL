@@ -2,5 +2,5 @@
 #define _bomb_h
 #include <stdio.h>
 #include <stdbool.h>
-int bomb(int times , char Char);
+int bomb(int times, char Char);
 #endif

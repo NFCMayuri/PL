@@ -3,11 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-typedef enum level {
-    easy=1,
+typedef enum level
+{
+    easy = 1,
     normal,
     hard,
     extreme
-    }LEVEL;
+} LEVEL;
 LEVEL getlevet(void);
 #endif
