@@ -8,7 +8,7 @@ def main():
     tcp_server_socket = socket(AF_INET, SOCK_STREAM)
     tcp_server_socket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     
-    tcp_server_socket.bind(("0.0.0.0", 8000))
+    tcp_server_socket.bind(("0.0.0.0", 5702))
     tcp_server_socket.listen(128)
     
     while True:
