@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <WinSock2.h>
-// #pragma comment(lib, "ws2_32.lib")  //加载 ws2_32.dll
+// #pragma comment(lib, "ws2_32.lib")  //load ws2_32.dll
 
 typedef void Fun(char *, int);
 
@@ -24,6 +24,7 @@ const char *format_headers = (
 	"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.47\r\n\r\n"
 );
 
+// Get admin from url(String Slicing)
 void get_admin(const char * url, char *admin)
 {
     int start = 7;
@@ -47,6 +48,7 @@ void get_admin_ip(const char *url, char *ip)
     strcpy(ip, inet_ntoa(*iddr));
 }
 
+// If url contians https, return 443, else return 80
 int get_url_port(const char * url)
 {
 	int port;
@@ -185,7 +187,7 @@ void request(const char *sUrl, Fun *fun)
 		sscanf(q, "%*s %s", data_type);
 	check_type(sUrl, data_type, filename, get_file_name(header, filename));
 	
-	// 打印 response
+	// print response
 	if (status != 200)
 		printf("\n%s\n\n", header);
 	fun(p, data_len);
@@ -228,6 +230,7 @@ void request(const char *sUrl, Fun *fun)
 	return;
 }
 
+// Example callback function
 void process_data(char * str, int len)
 {
 	if (!dowm_flag)
@@ -240,6 +243,7 @@ void process_data(char * str, int len)
 	}
 }
 
+// Simply replace https with http
 void https_to_http(char **url)
 {
 	if (url[1][4] == 's')

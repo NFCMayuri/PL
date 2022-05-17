@@ -10,7 +10,7 @@ typedef void Fun(char *);
 #define MAXLINE 100
 #define MAXRECV 0xfff
 
-// get admin from url(String Slicing)
+// Get admin from url(String Slicing)
 void get_admin(const char *url, char *admin)
 {
 	int start = 7;
@@ -37,7 +37,7 @@ void get_admin_ip(const char *url, char *ip)
 	strcpy(ip, inet_ntoa(*iddr));
 }
 
-// if url contians https, return 443, else return 80
+// If url contians https, return 443, else return 80
 int get_url_port(const char *url)
 {
 	char *ret = strstr(url, "https");
@@ -82,7 +82,7 @@ void request(const char *sUrl, Fun fun)
 	connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
 	send(sockfd, send_msg, strlen(send_msg), 0);
 
-	//分段接收处理
+	//Segmentation receiving treatment
 	do
 	{
 		r = recv(sockfd, buf, MAXRECV, 0);
