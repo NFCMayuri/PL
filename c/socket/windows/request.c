@@ -8,8 +8,8 @@ typedef void Fun(char *, int);
 
 #define MAXLINE 100
 #define MAXRECV 0xfff
-#define PROXY_IP "192.168.10.1"
-#define PROXY_PORT 1088
+#define PROXY_IP "127.0.0.1"
+#define PROXY_PORT 7890
 #define PROXY_FLAG 1
 
 FILE *fp = NULL;
@@ -120,7 +120,7 @@ void check_type(const char *url, char *type, char *filename, int nameflag)
 	dowm_flag = 1;
 }
 
-void request(const char *sUrl, Fun *fun)
+int request(const char *sUrl, Fun *fun)
 {
 	struct sockaddr_in servaddr;
 	clock_t start, end;
@@ -227,7 +227,7 @@ void request(const char *sUrl, Fun *fun)
 	closesocket(sockfd);
     WSACleanup();
 
-	return;
+	return status;
 }
 
 // Example callback function
@@ -271,6 +271,7 @@ int main(int argc, char *argv[])
 	https_to_http(argv);
 	printf("\n");
 	start = clock();
+	// while (request(argv[1], process_data)!=200);
 	request(argv[1], process_data);
 	// request(url, process_data);
 	end = clock();
