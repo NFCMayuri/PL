@@ -1,5 +1,5 @@
-git filter-branch -f --env-filter "GIT_COMMITTER_NAME=DataEraser; GIT_COMMITTER_EMAIL=MayuriNFC@outlook.com;"
-git filter-branch -f --env-filter "GIT_AUTHOR_NAME=DataEraser; GIT_AUTHOR_EMAIL=MayuriNFC@outlook.com; "
+git filter-branch -f --env-filter "GIT_COMMITTER_NAME=DataEraser; GIT_COMMITTER_EMAIL=102341238+DataEraserC@users.noreply.github.com;"
+git filter-branch -f --env-filter "GIT_AUTHOR_NAME=DataEraser; GIT_AUTHOR_EMAIL=102341238+DataEraserC@users.noreply.github.com; "
 git filter-branch -f --env-filter "GIT_COMMITTER_NAME=DataEraser; "
 
 git filter-branch -f --env-filter "if [ $GIT_COMMITTER_NAME == ‘CommitName’ ]; then GIT_COMMITTER_NAME=‘Demo’; fi "
