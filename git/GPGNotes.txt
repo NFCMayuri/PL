@@ -4,3 +4,4 @@ gpg --list-secret-keys --keyid-format=long
 gpg --armor --export 3AA5C34371567BD2
 git config user.signingkey Your_GPG_key_ID
 git config commit.gpgsign true
+gpg --edit-key 3AA5C34371567BD2
