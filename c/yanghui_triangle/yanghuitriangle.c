@@ -26,11 +26,11 @@ int main()
         }
         printf("\n");
     }
-    // print_array(a, n, n);
+    // PrintArray(a, n, n);
     return 0;
 }
 
-void print_array(int **n, int row, int column)
+void PrintArray(int **n, int row, int column)
 {
     for (int i = 0; i < row; i++)
     {
