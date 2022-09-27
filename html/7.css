@@ -1,0 +1,76 @@
+a:link {
+    color: aliceblue;
+}
+
+a:visited {
+    color: black;
+}
+
+a:active {
+    color: blue;
+}
+
+a:hover {
+    color: blueviolet;
+    text-decoration: none;
+}
+
+a::after {
+    color: aqua;
+}
+
+td {
+    text-decoration: none;
+}
+
+.tab,
+tr,
+td {
+    border-style: solid;
+    border-color: blueviolet;
+    border-width: 1px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table {
+    height: 50%;
+    width: 25%;
+}
+
+caption {
+    font-size: 40px;
+    font-weight: 600;
+    font-family: '宋体';
+}
+
+ul {
+    list-style-type: none;
+    list-style-position: inside;
+    list-style: none;
+}
+
+input[type="text"] {
+    padding-left: 30px;
+    margin: 0px;
+    transition: width 0.5s;
+    width: 20%;
+    text-align: center;
+    height: 30px;
+    background-image: url("select.png");
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
+input:focus {
+    background-color: lightblue;
+    width: 40%;
+}
+
+p:active {
+    color: purple
+}
+
+p:hover {
+    color: lightblue
+}
