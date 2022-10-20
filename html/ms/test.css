@@ -1,0 +1,55 @@
+.top {
+    margin:25px;
+    padding: 30px;
+    display: flex;
+    height: 160px;
+    justify-content: center;
+    flex-wrap: wrap
+}
+
+.parts {
+    min-width: 13%;
+    text-align: center;
+}
+
+.middle {
+    margin:25px;
+    display: flex;
+    height: 550px;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.box {
+    max-width: 25%;
+    height: 550px;
+    width: 100;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    max-width: 80%;
+}
+
+.bottom div {
+    width: 40%;
+    position: relative;
+    left: 50px;
+    top: 350px;
+}
+
+.bottom img {
+    margin:25px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+.bottom input[type="button"] {
+    color: white;
+    background-color: #0067b8;
+    width: 90px;
+    height: 35px;
+}

@@ -1,0 +1,14 @@
+p{
+    color: aqua;
+}
+.marked{
+    color: beige;
+    background-color: green;
+}
+.marked p{
+    color: yellow;
+}
+p.marked{
+    font-size: larger;
+    background-color:chartreuse;
+}
