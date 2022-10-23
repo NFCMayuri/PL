@@ -1,4 +1,4 @@
-#include "../include/bubblesort.h"
+#include "../include/BubbleSort.h"
 int main()
 {
     int a[] = {5, 10, 3, 7, 9, 6, 8, 1, 4, 2};
@@ -9,7 +9,7 @@ int main()
     {
         printf("%d\n", a[i]);
     }
-    bubblesort(a, size);
+    BubbleSort(a, size);    
     printf("After sorting:\n");
     for (i = 0; i < size; i++)
     {
@@ -17,7 +17,8 @@ int main()
     }
     return 0;
 }
-void bubblesort(int array[], int size)
+// sort array[] and save to array[]
+void BubbleSort(int *array, int size)
 {
     int i, j, temp;
     for (i = 0; i < size; i++)
@@ -32,4 +33,9 @@ void bubblesort(int array[], int size)
             }
         }
     }
+}
+void PrintIntArray(int *array, int length, char *interval) {
+  for (int i = 0; i <= length - 1; i++) {
+    printf("%d%s", *(array + i), interval);
+  }
 }
