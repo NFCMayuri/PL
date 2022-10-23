@@ -9,3 +9,6 @@ build/
 bin/
 .idea
 .vscode
+.clang-format
+.clang-tidy
+compile_flags.txt
