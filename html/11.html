@@ -9,20 +9,23 @@
 </head>
 
 <body>
-    <h1 id="p1">
-        <p>123</p>
-        <p>456</p>
-    </h1>
-    <h1 id="p2">
+    <h1 id="h">
         <p>123</p>
     </h1>
+    <h1 class="a1">
+        <p>1</p>
+    </h1>
+    <h1 class="a1">
+        <p>2</p>
+    </h1>
+    <h1 class="a1">
+        <p>3</p>
+    </h1>
+    <button onclick="a()">点我变456</button>
+    <button onclick="b()">点我变123</button>
+    <input type="text" onkeydown="key()"></input>
 </body>
 
 </html>
-<script>
-    window.alert("alert");
-    // document.write("123");
-    document.getElementById("p1").innerHTML = 456;
-    console.log(document.getElementById("p1").innerHTML)
-    console.log(document.getElementById("p2").innerText)
-</script>
+
+<script src="11.js"></script>
