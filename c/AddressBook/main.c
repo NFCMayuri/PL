@@ -1,5 +1,6 @@
 // fishc
 // Code Check is required bcs DataEraser did't do that
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -124,10 +125,12 @@ struct Person *findPerson(struct Person *contacts)
     {
         printf("Name:\n%s\n", current->name);
         printf("Phone number:\n%s\n", current->phone);
+        // Maybe this should show in return value instead
     }
     else
     {
         printf("Not Found\n");
+        // Maybe this should show in return value instead
     }
 
     return current;
@@ -138,13 +141,16 @@ void changePerson(struct Person *contacts)
     if (current != NULL)
     {
         printf("Please input new Phone number:\n");
+        // Maybe this should be wrote in main function instead
         scanf("%s", current->phone);
         // Bounds Check Elimination is required
         printf("Done");
+        // Maybe this should show in return value instead
     }
     else
     {
         printf("Not Found\n");
+        // Maybe this should show in return value instead
     }
 }
 void delPerson(struct Person **contacts)
@@ -160,7 +166,8 @@ void delPerson(struct Person **contacts)
         if (current == person)
         {
             *contacts = current->next;
-            // the first struct is target
+            free(current);
+            // target is the first struct
         }
         else
         {
@@ -168,7 +175,9 @@ void delPerson(struct Person **contacts)
             {
                 current = current->next;
             }
+            struct Person *target = current->next;
             current->next = current->next->next;
+            free(target);
         }
     }
 }
