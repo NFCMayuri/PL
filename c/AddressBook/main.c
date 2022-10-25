@@ -13,9 +13,9 @@ struct Person
 };
 void getInput(struct Person *person);
 void printPerson(struct Person *person);
-void addPerson(struct Person **contacts);
-void changePerson(struct Person *contacts);
-void delPerson(struct Person **contacts);
+int addPerson(struct Person **contacts);
+int changePerson(struct Person *contacts);
+int delPerson(struct Person **contacts);
 struct Person *findPerson(struct Person *contacts);
 void displayContacts(struct Person *contacts);
 void releaseContacts(struct Person **contacts);
@@ -37,10 +37,21 @@ int main()
         switch (code)
         {
         case 1: {
-            addPerson(&contacts);
+            switch (addPerson(&contacts))
+            {
+            case -1: {
+                printf("ERROR: malloc failed");
+                exit(1);
+                break;
+            }
+            case 0: {
+                break;
+            }
+            }
             break;
         }
         case 2: {
+            printf("Please input the name:\n");
             struct Person *person = findPerson(contacts);
             if (person != NULL)
             {
@@ -53,11 +64,32 @@ int main()
             break;
         }
         case 3: {
-            changePerson(contacts);
+            printf("Please input the name:\n");
+            switch (changePerson(contacts))
+            {
+            case -1: {
+                printf("The person is not found\n");
+                break;
+            }
+            case 0: {
+                break;
+            }
+            }
+
             break;
         }
         case 4: {
-            delPerson(&contacts);
+            printf("Please input the name:\n");
+            switch (delPerson(&contacts))
+            {
+            case -1: {
+                printf("The person is not found\n");
+                break;
+            }
+            case 0: {
+                break;
+            }
+            }
             break;
         }
         case 5: {
@@ -76,6 +108,7 @@ int main()
 END:
     releaseContacts(&contacts);
 }
+
 void getInput(struct Person *person)
 {
     printf("Please input name:\n");
@@ -85,22 +118,30 @@ void getInput(struct Person *person)
     scanf("%s", person->phone);
     // Bounds Check Elimination is required
 }
+
 void printPerson(struct Person *person)
 {
     printf("Name:\n%s\n", person->name);
     printf("Phone number:\n%s\n", person->phone);
 }
-void addPerson(struct Person **contacts)
+
+/*
+malloc failed -> -1 -> exit(1);
+Success -> 0
+*/
+int addPerson(struct Person **contacts)
 {
     struct Person *person = (struct Person *)malloc(sizeof(struct Person));
     if (person == NULL)
     {
-        printf("ERROR: malloc failed");
-        exit(1);
+        return -1;
     }
-    if (contacts != NULL)
+    
+    getInput(person);
+
+    // linked-list is not empty
+    if (*contacts != NULL)
     {
-        getInput(person);
         person->next = *contacts;
         *contacts = person;
     }
@@ -109,11 +150,18 @@ void addPerson(struct Person **contacts)
         *contacts = person;
         person->next = NULL;
     }
+    return 0;
 }
+
+/*
+Not Found -> NULL
+Success -> struct Person*
+*/
 struct Person *findPerson(struct Person *contacts)
 {
-    printf("Please input the name:\n");
-    char temp[20];
+    // printf("Please input the name:\n");
+    char temp[40];
+    // This should be move to function param
     scanf("%s", temp);
     // Bounds Check Elimination is required
     struct Person *current = contacts;
@@ -121,44 +169,51 @@ struct Person *findPerson(struct Person *contacts)
     {
         current = current->next;
     }
-    if (current != NULL)
-    {
-        printf("Name:\n%s\n", current->name);
-        printf("Phone number:\n%s\n", current->phone);
-        // Maybe this should show in return value instead
-    }
-    else
-    {
-        printf("Not Found\n");
-        // Maybe this should show in return value instead
-    }
+    // if (current != NULL)
+    // {
+    //     printf("Name:\n%s\n", current->name);
+    //     printf("Phone number:\n%s\n", current->phone);
+    //     // Maybe this should show in return value instead
+    // }
+    // else
+    // {
+    //     printf("Not Found\n");
+    //     // Maybe this should show in return value instead
+    // }
 
     return current;
 }
-void changePerson(struct Person *contacts)
+
+/*
+Not Found -> -1
+Success -> 0
+*/
+int changePerson(struct Person *contacts)
 {
     struct Person *current = findPerson(contacts);
     if (current != NULL)
     {
         printf("Please input new Phone number:\n");
-        // Maybe this should be wrote in main function instead
         scanf("%s", current->phone);
         // Bounds Check Elimination is required
-        printf("Done");
-        // Maybe this should show in return value instead
+        return 0;
     }
     else
     {
-        printf("Not Found\n");
-        // Maybe this should show in return value instead
+        return -1;
     }
 }
-void delPerson(struct Person **contacts)
+
+/*
+Not Found -> -1
+Success -> 0
+*/
+int delPerson(struct Person **contacts)
 {
     struct Person *person = findPerson(*contacts);
     if (person == NULL)
     {
-        printf("Not Found");
+        return -1;
     }
     else
     {
@@ -179,6 +234,7 @@ void delPerson(struct Person **contacts)
             current->next = current->next->next;
             free(target);
         }
+        return 0;
     }
 }
 void displayContacts(struct Person *contacts)
