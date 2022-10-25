@@ -11,31 +11,54 @@ struct Person
     char phone[40];
     struct Person *next;
 };
+
+void printmenu();
 void getInput(struct Person *person);
 void printPerson(struct Person *person);
+
+/*
+malloc failed -> -1 -> exit(1);
+Success -> 0
+*/
 int addPerson(struct Person **contacts);
+
+/*
+Not Found -> -1
+Success -> 0
+*/
 int changePerson(struct Person *contacts);
+
+/*
+Not Found -> -1
+Success -> 0
+*/
 int delPerson(struct Person **contacts);
+
+/*
+Not Found -> NULL
+Success -> struct Person*
+*/
 struct Person *findPerson(struct Person *contacts);
+
 void displayContacts(struct Person *contacts);
+
 void releaseContacts(struct Person **contacts);
+
 int main()
 {
     short code;
     struct Person *contacts = NULL;
-    printf("|Welcome to ContactsBook Manager Program|\n");
-    printf("|1:insert new Contact-------------------|\n");
-    printf("|2:find for existing Contact------------|\n");
-    printf("|3.change existing Contact information--|\n");
-    printf("|4.delete existing Contact--------------|\n");
-    printf("|5.display all Contact------------------|\n");
-    printf("|6.exit---------------------------------|\n");
+    printmenu();
     while (1)
     {
         printf("Please input the command code:\n");
         scanf("%d", &code);
         switch (code)
         {
+        case 0: {
+            printmenu();
+            break;
+        }
         case 1: {
             switch (addPerson(&contacts))
             {
@@ -114,6 +137,7 @@ void getInput(struct Person *person)
     printf("Please input name:\n");
     scanf("%s", person->name);
     // Bounds Check Elimination is required
+
     printf("Please input phone number:\n");
     scanf("%s", person->phone);
     // Bounds Check Elimination is required
@@ -125,18 +149,15 @@ void printPerson(struct Person *person)
     printf("Phone number:\n%s\n", person->phone);
 }
 
-/*
-malloc failed -> -1 -> exit(1);
-Success -> 0
-*/
 int addPerson(struct Person **contacts)
 {
     struct Person *person = (struct Person *)malloc(sizeof(struct Person));
+
     if (person == NULL)
     {
         return -1;
     }
-    
+
     getInput(person);
 
     // linked-list is not empty
@@ -153,44 +174,27 @@ int addPerson(struct Person **contacts)
     return 0;
 }
 
-/*
-Not Found -> NULL
-Success -> struct Person*
-*/
 struct Person *findPerson(struct Person *contacts)
 {
-    // printf("Please input the name:\n");
     char temp[40];
     // This should be move to function param
+
     scanf("%s", temp);
     // Bounds Check Elimination is required
+
     struct Person *current = contacts;
     while (current != NULL && strcmp(current->name, temp))
     {
         current = current->next;
     }
-    // if (current != NULL)
-    // {
-    //     printf("Name:\n%s\n", current->name);
-    //     printf("Phone number:\n%s\n", current->phone);
-    //     // Maybe this should show in return value instead
-    // }
-    // else
-    // {
-    //     printf("Not Found\n");
-    //     // Maybe this should show in return value instead
-    // }
 
     return current;
 }
 
-/*
-Not Found -> -1
-Success -> 0
-*/
 int changePerson(struct Person *contacts)
 {
     struct Person *current = findPerson(contacts);
+
     if (current != NULL)
     {
         printf("Please input new Phone number:\n");
@@ -204,13 +208,10 @@ int changePerson(struct Person *contacts)
     }
 }
 
-/*
-Not Found -> -1
-Success -> 0
-*/
 int delPerson(struct Person **contacts)
 {
     struct Person *person = findPerson(*contacts);
+
     if (person == NULL)
     {
         return -1;
@@ -237,6 +238,7 @@ int delPerson(struct Person **contacts)
         return 0;
     }
 }
+
 void displayContacts(struct Person *contacts)
 {
     while (contacts != NULL)
@@ -245,13 +247,27 @@ void displayContacts(struct Person *contacts)
         contacts = contacts->next;
     }
 }
+
 void releaseContacts(struct Person **contacts)
 {
     struct Person *temp = *contacts;
+
     while (*contacts != NULL)
     {
         temp = *contacts;
         *contacts = (*contacts)->next;
         free(temp);
     }
+}
+
+void printmenu()
+{
+    printf("|Welcome to ContactsBook Manager Program|\n");
+    printf("|0:print the Menu-----------------------|\n");
+    printf("|1:insert new Contact-------------------|\n");
+    printf("|2:find for existing Contact------------|\n");
+    printf("|3.change existing Contact information--|\n");
+    printf("|4.delete existing Contact--------------|\n");
+    printf("|5.display all Contact------------------|\n");
+    printf("|6.exit---------------------------------|\n");
 }
