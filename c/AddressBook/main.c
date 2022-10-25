@@ -12,43 +12,43 @@ struct Person
     struct Person *next;
 };
 
-void printmenu();
-void getInput(struct Person *person);
-void printPerson(struct Person *person);
+void PrintMenu();
+void GetInput(struct Person *person);
+void PrintPerson(struct Person *person);
 
 /*
 malloc failed -> -1 -> exit(1);
 Success -> 0
 */
-int addPerson(struct Person **contacts);
+int AddPerson(struct Person **contacts);
 
 /*
 Not Found -> -1
 Success -> 0
 */
-int changePerson(struct Person *contacts);
+int ChangePerson(struct Person *contacts);
 
 /*
 Not Found -> -1
 Success -> 0
 */
-int delPerson(struct Person **contacts);
+int DeletePerson(struct Person **contacts);
 
 /*
 Not Found -> NULL
 Success -> struct Person*
 */
-struct Person *findPerson(struct Person *contacts);
+struct Person *FindPerson(struct Person *contacts);
 
-void displayContacts(struct Person *contacts);
+void DisplayContacts(struct Person *contacts);
 
-void releaseContacts(struct Person **contacts);
+void ReleaseContacts(struct Person **contacts);
 
 int main()
 {
     short code;
     struct Person *contacts = NULL;
-    printmenu();
+    PrintMenu();
     while (1)
     {
         printf("Please input the command code:\n");
@@ -56,11 +56,11 @@ int main()
         switch (code)
         {
         case 0: {
-            printmenu();
+            PrintMenu();
             break;
         }
         case 1: {
-            switch (addPerson(&contacts))
+            switch (AddPerson(&contacts))
             {
             case -1: {
                 printf("ERROR: malloc failed");
@@ -75,10 +75,10 @@ int main()
         }
         case 2: {
             printf("Please input the name:\n");
-            struct Person *person = findPerson(contacts);
+            struct Person *person = FindPerson(contacts);
             if (person != NULL)
             {
-                printPerson(person);
+                PrintPerson(person);
             }
             else
             {
@@ -88,7 +88,7 @@ int main()
         }
         case 3: {
             printf("Please input the name:\n");
-            switch (changePerson(contacts))
+            switch (ChangePerson(contacts))
             {
             case -1: {
                 printf("The person is not found\n");
@@ -103,7 +103,7 @@ int main()
         }
         case 4: {
             printf("Please input the name:\n");
-            switch (delPerson(&contacts))
+            switch (DeletePerson(&contacts))
             {
             case -1: {
                 printf("The person is not found\n");
@@ -116,7 +116,7 @@ int main()
             break;
         }
         case 5: {
-            displayContacts(contacts);
+            DisplayContacts(contacts);
             break;
         }
         case 6: {
@@ -129,10 +129,10 @@ int main()
         }
     }
 END:
-    releaseContacts(&contacts);
+    ReleaseContacts(&contacts);
 }
 
-void getInput(struct Person *person)
+void GetInput(struct Person *person)
 {
     printf("Please input name:\n");
     scanf("%s", person->name);
@@ -143,13 +143,13 @@ void getInput(struct Person *person)
     // Bounds Check Elimination is required
 }
 
-void printPerson(struct Person *person)
+void PrintPerson(struct Person *person)
 {
     printf("Name:\n%s\n", person->name);
     printf("Phone number:\n%s\n", person->phone);
 }
 
-int addPerson(struct Person **contacts)
+int AddPerson(struct Person **contacts)
 {
     struct Person *person = (struct Person *)malloc(sizeof(struct Person));
 
@@ -158,7 +158,7 @@ int addPerson(struct Person **contacts)
         return -1;
     }
 
-    getInput(person);
+    GetInput(person);
 
     // linked-list is not empty
     if (*contacts != NULL)
@@ -174,7 +174,7 @@ int addPerson(struct Person **contacts)
     return 0;
 }
 
-struct Person *findPerson(struct Person *contacts)
+struct Person *FindPerson(struct Person *contacts)
 {
     char temp[40];
     // This should be move to function param
@@ -191,9 +191,9 @@ struct Person *findPerson(struct Person *contacts)
     return current;
 }
 
-int changePerson(struct Person *contacts)
+int ChangePerson(struct Person *contacts)
 {
-    struct Person *current = findPerson(contacts);
+    struct Person *current = FindPerson(contacts);
 
     if (current != NULL)
     {
@@ -208,9 +208,9 @@ int changePerson(struct Person *contacts)
     }
 }
 
-int delPerson(struct Person **contacts)
+int DeletePerson(struct Person **contacts)
 {
-    struct Person *person = findPerson(*contacts);
+    struct Person *person = FindPerson(*contacts);
 
     if (person == NULL)
     {
@@ -239,16 +239,16 @@ int delPerson(struct Person **contacts)
     }
 }
 
-void displayContacts(struct Person *contacts)
+void DisplayContacts(struct Person *contacts)
 {
     while (contacts != NULL)
     {
-        printPerson(contacts);
+        PrintPerson(contacts);
         contacts = contacts->next;
     }
 }
 
-void releaseContacts(struct Person **contacts)
+void ReleaseContacts(struct Person **contacts)
 {
     struct Person *temp = *contacts;
 
@@ -260,7 +260,7 @@ void releaseContacts(struct Person **contacts)
     }
 }
 
-void printmenu()
+void PrintMenu()
 {
     printf("|Welcome to ContactsBook Manager Program|\n");
     printf("|0:print the Menu-----------------------|\n");
