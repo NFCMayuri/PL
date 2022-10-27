@@ -4,9 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #define NOT_FOUND -1
-// #define MALLOC_FAILED -2
-// #define SUCCESS 0
+
+#define NOT_FOUND NULL
+#define MALLOC_FAILED NULL
+#define END_OF_LIST NULL
+
 struct Person
 {
     char name[20];
@@ -65,7 +67,7 @@ int main()
         }
         case 1: {
             struct Person *person = AddPerson(&contacts);
-            if (person == NULL)
+            if (person == MALLOC_FAILED)
             {
                 printf("ERROR: malloc failed");
                 exit(1);
@@ -75,7 +77,7 @@ int main()
         case 2: {
             printf("Please input the name:\n");
             struct Person *person = FindPerson(contacts);
-            if (person != NULL)
+            if (person != NOT_FOUND)
             {
                 PrintPerson(person);
             }
@@ -88,7 +90,7 @@ int main()
         case 3: {
             printf("Please input the name:\n");
             struct Person *person = ChangePerson(contacts);
-            if (person == NULL)
+            if (person == NOT_FOUND)
             {
                 printf("The person is not found\n");
             }
@@ -97,7 +99,7 @@ int main()
         case 4: {
             printf("Please input the name:\n");
             struct Person *person = DeletePerson(&contacts);
-            if (person == NULL)
+            if (person == NOT_FOUND)
             {
                 printf("The person is not found\n");
             }
@@ -148,23 +150,26 @@ struct Person *AddPerson(struct Person **contacts)
 
     if (person == NULL)
     {
-        return NULL;
+        return MALLOC_FAILED;
     }
 
     GetInput(person);
 
-    // linked-list is not empty
-    if (*contacts != NULL)
+    // head insert
+    if (*contacts != END_OF_LIST)
     {
+        // linked-list is not empty
         person->next = *contacts;
         *contacts = person;
     }
     else
     {
+        // linked-list is empty
         *contacts = person;
         person->next = NULL;
     }
     return person;
+    // return the new-inserted person
 }
 
 struct Person *FindPerson(struct Person *contacts)
@@ -176,7 +181,7 @@ struct Person *FindPerson(struct Person *contacts)
     // Bounds Check Elimination is required
 
     struct Person *current = contacts;
-    while (current != NULL && strcmp(current->name, temp))
+    while (current != END_OF_LIST && strcmp(current->name, temp))
     {
         current = current->next;
     }
@@ -188,7 +193,7 @@ struct Person *ChangePerson(struct Person *contacts)
 {
     struct Person *current = FindPerson(contacts);
 
-    if (current != NULL)
+    if (current != NOT_FOUND)
     {
         printf("Please input new Phone number:\n");
         scanf("%s", current->phone);
@@ -197,7 +202,7 @@ struct Person *ChangePerson(struct Person *contacts)
     }
     else
     {
-        return NULL;
+        return NOT_FOUND;
     }
 }
 
@@ -205,19 +210,18 @@ struct Person *DeletePerson(struct Person **contacts)
 {
     struct Person *person = FindPerson(*contacts);
 
-    if (person == NULL)
+    if (person == NOT_FOUND)
     {
-        return NULL;
+        return NOT_FOUND;
     }
     else
     {
         struct Person *current = *contacts;
         if (current == person)
         {
+            // target is the first node
             *contacts = current->next;
-            // free(current);
             return current;
-            // target is the first struct
         }
         else
         {
@@ -227,16 +231,14 @@ struct Person *DeletePerson(struct Person **contacts)
             }
             struct Person *target = current->next;
             current->next = current->next->next;
-            // free(target);
             return target;
         }
-        // return NULL;
     }
 }
 
 void DisplayContacts(struct Person *contacts)
 {
-    while (contacts != NULL)
+    while (contacts != END_OF_LIST)
     {
         PrintPerson(contacts);
         contacts = contacts->next;
@@ -252,7 +254,7 @@ void ReleaseContacts(struct Person **contacts)
 {
     struct Person *temp = *contacts;
 
-    while (*contacts != NULL)
+    while (*contacts != END_OF_LIST)
     {
         temp = *contacts;
         *contacts = (*contacts)->next;
