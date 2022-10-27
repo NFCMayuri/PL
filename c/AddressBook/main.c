@@ -36,7 +36,7 @@ struct Person *ChangePerson(struct Person *contacts);
 Not Found -> NULL
 Success -> struct Person*
 */
-struct Person *DeletePerson(struct Person **contacts);
+struct Person *RemovePerson(struct Person **contacts);
 
 /*
 Not Found -> NULL
@@ -98,7 +98,7 @@ int main()
         }
         case 4: {
             printf("Please input the name:\n");
-            struct Person *person = DeletePerson(&contacts);
+            struct Person *person = RemovePerson(&contacts);
             if (person == NOT_FOUND)
             {
                 printf("The person is not found\n");
@@ -206,7 +206,7 @@ struct Person *ChangePerson(struct Person *contacts)
     }
 }
 
-struct Person *DeletePerson(struct Person **contacts)
+struct Person *RemovePerson(struct Person **contacts)
 {
     struct Person *person = FindPerson(*contacts);
 
