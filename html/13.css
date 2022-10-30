@@ -1,0 +1,20 @@
+.a {
+    background-color: aliceblue;
+    height: 500px;
+    width: 1500px;
+    margin-left: 5%;
+    overflow: hidden;
+    position: absolute;
+}
+.b {
+    width: 4500px;
+    height: 500px;
+    display: flex;
+    /* left: -100px; */
+    position: relative;
+}
+.c {
+    width: 1500px;
+    height: 500px;
+    float:left;
+}
