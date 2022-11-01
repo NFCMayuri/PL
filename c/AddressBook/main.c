@@ -20,25 +20,25 @@ void PrintMenu();
 void GetInput(struct Person *person);
 void PrintPerson(struct Person *person);
 
-/*
+/**
 malloc failed -> NULL -> exit(1);
 Success -> struct Person*
 */
 struct Person *AddPerson(struct Person **contacts);
 
-/*
+/**
 Not Found -> NULL
 Success -> struct Person*
 */
 struct Person *ChangePerson(struct Person *contacts);
 
-/*
+/**
 Not Found -> NULL
 Success -> struct Person*
 */
 struct Person *RemovePerson(struct Person **contacts);
 
-/*
+/**
 Not Found -> NULL
 Success -> struct Person* -> remember to release!
 */
