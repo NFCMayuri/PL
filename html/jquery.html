@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="p1">123456</p>
+    <button id="hide">hide</button>
+    <button id="show">show</button>
+    <button id="toggle">hide or show</button>
+    <button id="fadein">fadein</button>
+    <button id="fadeout">fadeout</button>
+    <button id="fadetoggle">fadein or fadeout</button>
+    <button id="fadeto">fadeto</button>
+    <div class="d1" style="height:100px;width: 200px;background-color:aliceblue;"></div>
+    <div class="d2" style="height:4 00px;width: 200px;background-color:yellow;"></div>
+    <button class="sildetoggle">sildetoggle</button>
+
+</body>
+
+</html>
+<script src="jquery-3.6.1.js"></script>
+<script>
+    // onload = function () { };
+    // $(document).ready(function () {
+
+    // });
+    // $(function () {
+
+    // });
+    $(function () {
+        // $("p").click(function () {
+        //     $(this).hide();
+        // })
+        $("#hide").click(function () {
+            $(".p1").hide();
+        });
+        $("#show").click(function () {
+            $(".p1").show();
+        });
+        $("#hideshow").click(function () {
+            $(".p1").toggle();
+        });
+        $("#fadein").click(function () {
+            $(".p1").fadeIn();
+        });
+        $("#fadeout").click(function () {
+            $(".p1").fadeOut();
+        });
+        $("#fadetoggle").click(function () {
+            $(".p1").fadeToggle();
+        });
+        $("#fadeto").click(function () {
+            $(".p1").fadeTo(2000, 0.1);
+        });
+        $("#fadeto").click(function () {
+            $(".p1").fadeTo(2000, 0.1);
+        });
+        $("#sildetoggle").click(function () {
+            $(".d1").slideToggle(2000);
+        });
+    });
+
+    // $("#p1").click(function () {
+    //     $(this).hide()
+    // })
+</script>
