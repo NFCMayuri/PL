@@ -1,3 +1,6 @@
+#ifndef _GETCH_H
+#define _GETCH_H
+
 #include <stdio.h>
 // https://sourceforge.net/p/predef/wiki/OperatingSystems/
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
@@ -42,4 +45,6 @@ inline int sh_getch(void) {
 
 #error "error : Not supported!"
 
-#endif
+#endif /* OS */
+
+#endif /* _GETCH_H */
