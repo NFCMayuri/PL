@@ -1,4 +1,4 @@
-#include "../include/koishi.h"
+#include "../include/game.h"
 extern LEVEL getlevel();
 int main()
 {
