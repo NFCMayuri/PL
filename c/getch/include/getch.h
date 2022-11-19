@@ -40,6 +40,6 @@ inline int sh_getch(void) {
 #elif defined(__APPLE__)
 #else
 
-#error "error : Not in supportions!"
+#error "error : Not supported!"
 
 #endif
