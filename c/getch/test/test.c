@@ -7,20 +7,8 @@ int main() {
   char ch;
   do {
     ch = sh_getch();
-    switch (ch) {
-    case 'w':
-      printf("You press w\n");
-      break;
-    case 'a':
-      printf("You press a\n");
-      break;
-    case 's':
-      printf("You press s\n");
-      break;
-    case 'd':
-      printf("You press d\n");
-      break;
-    }
+    printf("You press \'%c\'         \nAscii: %d\n\n", ch, ch);
   } while (ch != ESC);
-  printf("ch:\'%c'\nExiting......", ch);
+  printf("You press \'%c\'         \nAscii: %d\n\n", ch, ch);
+  printf("ch:\'%c'         \nExiting......", ch);
 }
