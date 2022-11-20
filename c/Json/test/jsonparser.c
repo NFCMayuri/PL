@@ -13,7 +13,8 @@ int jumpNULL(const char *string, int *index) {
   }
   return *index;
 }
-int sliceString(const char *string, int index, int length);
+int sliceStringByLength(const char *string, int index, int length);
+int sliceStringByAddress(const char *head, const char *end);
 int main() {
   const char json[] =
       "{\"int1\":1,\"str1\":\"2\",\"double1\":3.14,\"bool1\":true,"
@@ -27,6 +28,8 @@ int main() {
     _Bool bool1;
     char char1;
     void *null1;
+    // void * -> any type of various
+    // void ** -> array which can storage any type of various
     void **array1;
     struct json1 *next;
   };
@@ -37,11 +40,12 @@ int main() {
   } else {
     strindex++;
     jumpNULL(json, &strindex);
-    if (json[strindex] != '"') {
+    if (json[strindex] == ' ') {
       { jumpNULL(json, &strindex); }
     }
     if (json[strindex] != '"') {
       printf("json parse failed");
+    } else {
     }
   }
 }
