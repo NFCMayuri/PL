@@ -7,8 +7,13 @@ int main() {
   char ch;
   do {
     ch = sh_getch();
-    printf("You press \'%c\'         \nAscii: %d\n\n", ch, ch);
-  } while (ch != ESC);
-  printf("You press \'%c\'         \nAscii: %d\n\n", ch, ch);
-  printf("ch:\'%c'         \nExiting......", ch);
+    if (ch > 31 && ch < 127) {
+      printf("You press \'%c\'         \nAscii: 0x%x\n\n", ch, ch);
+
+    } else {
+      printf("Ascii: 0x%x", ch);
+      printf("\n\n");
+    }
+  } while (ch != 'q');
+  printf("ch:\'%c'\nExiting......", ch);
 }
