@@ -42,7 +42,15 @@ int main() {
     }
     if (json[strindex] != '"') {
       printf("json parse failed");
-    } else {
     }
   }
 }
+
+// char *strstr(const char *haystack, const char *needle);
+// void *memchr(const void *str, int c, size_t n);
+// char *strchr(const char *str, int c);
+// char *strrchr(const char *str, int c);
+// char *strtok(char *str, const char *delim);
+// size_t strspn(const char *str1, const char *str2);
+// size_t strcspn(const char *str1, const char *str2);
+// char *strpbrk(const char *str1, const char *str2);
