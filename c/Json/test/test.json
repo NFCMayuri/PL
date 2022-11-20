@@ -1,0 +1,22 @@
+{
+    "int1": 1,
+    "str1": "2",
+    "double1": 3.14,
+    "bool1": true,
+    "char1": 48,
+    "null1": null,
+    "array1": [
+        "string",
+        1,
+        null,
+        true,
+        false,
+        3.14
+    ],
+    "json1": {
+        "id": 0,
+        "status": 200
+    }
+}
+//读取文件 读到字符串解析到字符串 读到除字符串外空格跳过 读到除字符串外{}解析到子json 读到除字符串外[]解析到子json
+char json[] ="{\"int1\":1,\"str1\":\"2\",\"double1\":3.14,\"bool1\":true,\"char1\":48,\"null1\":null,\"array1\":[\"string\",1,null,true,false,3.14],\"json1\":{\"id\":0,\"status\":200}}";
