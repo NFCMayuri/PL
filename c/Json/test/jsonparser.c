@@ -13,56 +13,7 @@ int jumpNULL(const char *string, int *index) {
   }
   return *index;
 }
-
-// strchr() or  strpbrk() and strcspn()
-int indexCharInString(const char *string, int length, const char target) {
-  int i;
-  for (i = 0; i < length; i++) {
-    if (string[i] == target) {
-      { return i; }
-    }
-  }
-  return -1;
-}
-int sliceString(const char *string, int index, int length) { return 0; }
-
-// strstr()
-// int indexStringInString(const char *string, int length, const char *target) {
-//   int index = 0;
-//   index = indexCharInString(string + index, length - strlen(target),
-//   target[0]); while (memcmp(string + index, target, strlen(target)) != 0) {
-//     if (index > length) {
-//       return -1;
-//     } else {
-//       index++;
-//       length--;
-//       index =
-//           indexCharInString(string + index, length - strlen(target),
-//           target[0]);
-//     }
-//   }
-//   return index;
-// }
-
-// strstr()
-char *indexStringInString(const char *string, int length, const char *target) {
-  // char *ret = memchr(string, target[0], length);
-  char *ret = strchr(string, target[0]);
-  while (strncmp(ret, target, strlen(target)) != 0 && ret != NULL) {
-    ret++;
-    // ret = memchr(ret, target[0], length + string - ret);
-    ret = strchr(ret, target[0]);
-  }
-  return ret;
-}
-// int main() {
-//   char a[] = "heollo.xyz";
-//   // printf("%d", indexCharInString(a, strlen(a), '.'));
-//   // printf("%s", a + indexStringInString(a, strlen(a), "o."));
-//   // printf("%s", indexStringInString(a, strlen(a), "o."));
-//   // puts(indexStringInString(a, strlen(a), "o."));
-//   puts(strstr(a, "o."));
-// }
+int sliceString(const char *string, int index, int length);
 int main() {
   const char json[] =
       "{\"int1\":1,\"str1\":\"2\",\"double1\":3.14,\"bool1\":true,"
