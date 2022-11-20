@@ -55,43 +55,43 @@ char *indexStringInString(const char *string, int length, const char *target) {
   }
   return ret;
 }
-int main() {
-  char a[] = "heollo.xyz";
-  // printf("%d", indexCharInString(a, strlen(a), '.'));
-  // printf("%s", a + indexStringInString(a, strlen(a), "o."));
-  // printf("%s", indexStringInString(a, strlen(a), "o."));
-  // puts(indexStringInString(a, strlen(a), "o."));
-  puts(strstr(a, "o."));
-}
 // int main() {
-//   const char json[] =
-//       "{\"int1\":1,\"str1\":\"2\",\"double1\":3.14,\"bool1\":true,"
-//       "\"char1\":48,\"null1\":null,\"array1\":[\"string\",1,null,"
-//       "true,false,3.14],\"json1\":{\"id\":0,\"status\":200}}";
-//   puts(json);
-//   struct json1 {
-//     int int1;
-//     char *str1;
-//     double double1;
-//     _Bool bool1;
-//     char char1;
-//     void *null1;
-//     void **array1;
-//     struct json1 *next;
-//   };
-//   int strindex = 0;
-//   jumpNULL(json, &strindex);
-//   if (json[strindex] != '{') {
-//     printf("json parse failed");
-//   } else {
-//     strindex++;
-//     jumpNULL(json, &strindex);
-//     if (json[strindex] != '"') {
-//       { jumpNULL(json, &strindex); }
-//     }
-//     if (json[strindex] != '"') {
-//       printf("json parse failed");
-//     } else {
-//     }
-//   }
+//   char a[] = "heollo.xyz";
+//   // printf("%d", indexCharInString(a, strlen(a), '.'));
+//   // printf("%s", a + indexStringInString(a, strlen(a), "o."));
+//   // printf("%s", indexStringInString(a, strlen(a), "o."));
+//   // puts(indexStringInString(a, strlen(a), "o."));
+//   puts(strstr(a, "o."));
 // }
+int main() {
+  const char json[] =
+      "{\"int1\":1,\"str1\":\"2\",\"double1\":3.14,\"bool1\":true,"
+      "\"char1\":48,\"null1\":null,\"array1\":[\"string\",1,null,"
+      "true,false,3.14],\"json1\":{\"id\":0,\"status\":200}}";
+  puts(json);
+  struct json1 {
+    int int1;
+    char *str1;
+    double double1;
+    _Bool bool1;
+    char char1;
+    void *null1;
+    void **array1;
+    struct json1 *next;
+  };
+  int strindex = 0;
+  jumpNULL(json, &strindex);
+  if (json[strindex] != '{') {
+    printf("json parse failed");
+  } else {
+    strindex++;
+    jumpNULL(json, &strindex);
+    if (json[strindex] != '"') {
+      { jumpNULL(json, &strindex); }
+    }
+    if (json[strindex] != '"') {
+      printf("json parse failed");
+    } else {
+    }
+  }
+}
