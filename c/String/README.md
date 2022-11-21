@@ -1,8 +1,9 @@
 # A custom library to simulate string operation func in golang
 
-- [ ] func Index(s, substr string) int
+- [x] func EqualFold(s, t string) bool
+- [x] func Index(s, substr string) int
 - [ ] func IndexAny(s []byte, chars string) int
-- [ ] func IndexByte(b []byte, c byte) int
+- [x] func IndexByte(b []byte, c byte) int
 - [ ] func IndexFunc(s string, f func(rune) bool) int
 - [ ] func IndexRune(s string, r rune) int
 - [ ] func LastIndex(s, substr string) int
@@ -13,10 +14,6 @@
 - [ ] func TrimSpace(str string) string
 - [ ] func HasPrefix(s string, prefix string) bool
 - [ ] func HasSuffix(s string, suffix string) bool
-- [ ] func Index(s string, str string) int
-- [ ] func LastIndex(s string, str string) int
-- [ ] func IndexAny(s,chars string)int
-- [ ] func IndexByte(s string, c byte) int
 - [ ] func Replace(str string, old string, new string, n int)
 - [ ] func Title(s string) string
 - [ ] func ToTitle(s string) string
@@ -24,7 +21,6 @@
 - [ ] func ToUpper(str string) string
 - [ ] func Contains(s, substr string) bool
 - [ ] func ContainsAny(s,chars string)bool
-- [ ] func IndexRune(s string, r rune) int
 - [ ] func Count(s, sep string) int
 - [ ] func Repeat(str string, count int)string
 - [ ] func Trim(str string, cut string)
