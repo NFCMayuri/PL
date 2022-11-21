@@ -7,10 +7,12 @@ Makefile
 cmake_install.cmake
 build/
 bin/
-.idea
-.vscode
 .clang-format
 .clang-tidy
 compile_flags.txt
 jquery-*.js
 bootstrap/
+.vs/
+.idea/
+.vscode/
+CppProperties.json
