@@ -1,9 +1,16 @@
 // https://zxbcw.cn/post/218247/
+
+#if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
+#include <windows.h>
+#elif defined(__linux__) || defined(__gnu_linux__)
+#include <unistd.h>
+#elif defined(__APPLE__)
+#endif
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <unistd.h>
 
 #define X 40
 #define Y 20
@@ -216,7 +223,14 @@ int main() {
   randomApple();
   while (1) {
     show(); // 显示
+
+#if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
+    Sleep(delay);
+#elif defined(__linux__) || defined(__gnu_linux__)
     usleep(delay);
+#elif defined(__APPLE__)
+#endif
+
     isFail();          // 判断是否会咬到自己
     canEat();          // 判断是否能吃到*
     switch (direction) // 选择路径
