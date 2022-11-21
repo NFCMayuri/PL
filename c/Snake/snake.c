@@ -1,13 +1,16 @@
 // https://zxbcw.cn/post/218247/
 
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
+#include "pthread.h"
+#include <conio.h>
 #include <windows.h>
+
 #elif defined(__linux__) || defined(__gnu_linux__)
+#include <pthread.h>
 #include <unistd.h>
 #elif defined(__APPLE__)
 #endif
 
-#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -24,8 +27,8 @@ char *p[Y * X] = {&a[0][3], &a[0][2], &a[0][1], &a[0][0]}; // p[0]表示蛇头�
 
 int n = 3; // 蛇身的长度（不带蛇头）
 int i, j;
-int direction = 1;  // 标志位：1.右；2.上；3.左；4.下；-1.退出
-int delay = 200000; // 用于usleep，延时0.2秒
+int direction = 1; // 标志位：1.右；2.上；3.左；4.下；-1.退出
+int delay = 200;   // 用于usleep，延时0.2秒(200ms)
 void moveBody() {
   *p[n] = 0;
   for (i = n; i > 0; i--) {
@@ -170,7 +173,12 @@ void *key(void *arg) // 控制方向：w,s,a,d-->上下左右
 {
   char k;
   while (1) {
+#if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
+    k = _getch();
+#elif defined(__linux__) || defined(__gnu_linux__)
     k = getchar();
+#elif defined(__APPLE__)
+#endif
     switch (k) {
     case 'w': // 上
     {
@@ -217,7 +225,11 @@ void *key(void *arg) // 控制方向：w,s,a,d-->上下左右
 }
 
 int main() {
+#if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
+#elif defined(__linux__) || defined(__gnu_linux__)
   system("stty -icanon"); // 关闭缓冲区，输入字符无需回车直接接受
+#elif defined(__APPLE__)
+#endif
   pthread_t pid;
   pthread_create(&pid, NULL, key, NULL); // 创建线程，键盘控制
   randomApple();
@@ -227,7 +239,7 @@ int main() {
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
     Sleep(delay);
 #elif defined(__linux__) || defined(__gnu_linux__)
-    usleep(delay);
+    usleep(delay * 1000);
 #elif defined(__APPLE__)
 #endif
 
