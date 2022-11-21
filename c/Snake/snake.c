@@ -18,28 +18,29 @@
 #define X 40
 #define Y 20
 
-// char HEAD = '@'; // 蛇头的形状
-// char BODY = 'O'; // 蛇身的形状
-#define HEAD '@'                                           // 蛇头的形状
-#define BODY 'O'                                           // 蛇身的形状
-char a[Y][X] = {{BODY, BODY, BODY, HEAD}};                 // 初始是0
-char *p[Y * X] = {&a[0][3], &a[0][2], &a[0][1], &a[0][0]}; // p[0]表示蛇头位置
+// char HEAD = '@'; // The shape of snake head
+// char BODY = 'O'; // The shape of snake body
+#define HEAD '@'                           // The shape of snake head
+#define BODY 'O'                           // The shape of snake body
+char a[Y][X] = {{BODY, BODY, BODY, HEAD}}; // The initial char is 0
+char *p[Y * X] = {&a[0][3], &a[0][2], &a[0][1],
+                  &a[0][0]}; // p[0] stand for snake head
 
-int n = 3; // 蛇身的长度（不带蛇头）
+int n = 3; // The length of snake body (without head)
 int i, j;
-int direction = 1; // 标志位：1.右；2.上；3.左；4.下；-1.退出
-int delay = 200;   // 用于usleep，延时0.2秒(200ms)
+int direction = 1; // 1.right;2.up;3.left;4.down;-1.exit
+int delay = 200;   // delay 0.2s(200ms)
 void moveBody() {
   *p[n] = 0;
   for (i = n; i > 0; i--) {
-    p[i] = p[i - 1]; // 每一节身体往上一节位置移动
+    p[i] = p[i - 1]; // per part goes to the address of the next part ofbody
   }
-  *p[0] = BODY; // 身体到达原先的蛇头位置
+  *p[0] = BODY; // The First part of snake body come to snake head
 }
 void moveRight() {
   moveBody();
-  p[0] = p[0] + 1; // 蛇头移动
-  *p[0] = HEAD;    // 新蛇头位置变成蛇头
+  p[0] = p[0] + 1; // Move snake head
+  *p[0] = HEAD;    // change the char of new head(new address)'s shape to HEAD
 }
 void moveLeft() {
   moveBody();
@@ -72,95 +73,95 @@ void show() {
   }
   for (i = 0; i < X; i++)
     printf("-");
-  printf("\nw,s,a,d->上下左右；j,k->加减速;ESC退出\n");
+  printf("\nw,s,a,d->Up Down Left Right;j,k->Speed Up/Down;ESC: Exit\n");
 }
 
-void randomApple() // 随机数生成*
+void randomApple() // Random
 {
   srand(time(NULL));
   do {
     i = rand() % Y;
     j = rand() % X;
-    // 随机位置的值为0，则产生*；否则继续找随机位置
+    // if random location is 0 ->*;else find again and again
   } while (a[i][j] != 0);
   a[i][j] = '*';
 }
 
 void canEat() {
-  if (direction == 1) // 右
+  if (direction == 1) // Right
   {
     if (*(p[0] + 1) == '*') {
-      n++; // 长度增加
+      n++; // length++
       p[n] = p[n - 1];
-      randomApple(); // 随机数生成*
+      randomApple();
     }
   }
-  if (direction == 2) // 上
+  if (direction == 2) // Up
   {
     if (*(p[0] - X) == '*') {
-      n++; // 长度增加
+      n++; // length++
       p[n] = p[n - 1];
-      randomApple(); // 随机数生成*
+      randomApple();
     }
   }
-  if (direction == 3) // 左
+  if (direction == 3) // Left
   {
     if (*(p[0] - 1) == '*') {
-      n++; // 长度增加
+      n++; // length++
       p[n] = p[n - 1];
-      randomApple(); // 随机数生成*
+      randomApple();
     }
   }
-  if (direction == 4) // 下
+  if (direction == 4) // Down
   {
     if (*(p[0] + X) == '*') {
-      n++; // 长度增加
+      n++; // length++
       p[n] = p[n - 1];
-      randomApple(); // 随机数生成*
+      randomApple();
     }
   }
 }
 
 void isFail() {
-  if (p[0] < &a[0][0] || p[0] > &a[Y - 1][X - 1]) // 蛇头不在矩阵内
+  if (p[0] < &a[0][0] || p[0] > &a[Y - 1][X - 1]) // snake is not in the matrix
   {
     printf("fail!\n");
     direction = -1;
   }
-  if (direction == 1) // 右
+  if (direction == 1) // Right
   {
     for (i = n; i > 0; i--) {
-      if ((p[0] + 1) == p[i]) // 右边是自己的身体
+      if ((p[0] + 1) == p[i]) // Right of the head is body
       {
         printf("fail!\n");
         direction = -1;
       }
     }
   }
-  if (direction == 2) // 上
+  if (direction == 2) // Up
   {
     for (i = n; i > 0; i--) {
-      if ((p[0] - X) == p[i]) // 上边是自己的身体
+      if ((p[0] - X) == p[i]) // Up of the head is body
       {
         printf("fail!\n");
         direction = -1;
       }
     }
   }
-  if (direction == 3) // 左
+  if (direction == 3) // Left
   {
     for (i = n; i > 0; i--) {
-      if ((p[0] - 1) == p[i]) // 左边是自己的身体
+      if ((p[0] - 1) == p[i]) // Left of the head is body
       {
         printf("fail!\n");
         direction = -1;
       }
     }
   }
-  if (direction == 4) // 下
+  if (direction == 4) // Down
   {
     for (i = n; i > 0; i--) {
-      if ((p[0] + X) == p[i]) // 下边是自己的身体
+      if ((p[0] + X) == p[i]) // Down of the head is body
       {
         printf("fail!\n");
         direction = -1;
@@ -169,7 +170,7 @@ void isFail() {
   }
 }
 
-void *key(void *arg) // 控制方向：w,s,a,d-->上下左右
+void *key(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
 {
   char k;
   while (1) {
@@ -180,43 +181,43 @@ void *key(void *arg) // 控制方向：w,s,a,d-->上下左右
 #elif defined(__APPLE__)
 #endif
     switch (k) {
-    case 'w': // 上
+    case 'w': // Up
     {
       if (direction != 4)
         direction = 2;
       break;
     }
-    case 's': // 下
+    case 's': // Down
     {
       if (direction != 2)
         direction = 4;
       break;
     }
-    case 'a': // 左
+    case 'a': // Left
     {
       if (direction != 1)
         direction = 3;
       break;
     }
-    case 'd': // 右
+    case 'd': // Right
     {
       if (direction != 3)
         direction = 1;
       break;
     }
-    case 'j': // 加速
+    case 'j': // SpeedUp
     {
       delay = delay * 4 / 5;
       break;
     }
-    case 'k': // 减速
+    case 'k': // SpeedDown
     {
       delay = delay * 5 / 4;
       break;
     }
     case 27: // ESC
     {
-      printf("退出！\n");
+      printf("Exit！\n");
       direction = -1;
       break;
     }
@@ -227,14 +228,14 @@ void *key(void *arg) // 控制方向：w,s,a,d-->上下左右
 int main() {
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #elif defined(__linux__) || defined(__gnu_linux__)
-  system("stty -icanon"); // 关闭缓冲区，输入字符无需回车直接接受
+  system("stty -icanon"); // close lined buffer of input for no enter to capture input
 #elif defined(__APPLE__)
 #endif
   pthread_t pid;
-  pthread_create(&pid, NULL, key, NULL); // 创建线程，键盘控制
+  pthread_create(&pid, NULL, key, NULL); // Create pthread to capture input
   randomApple();
   while (1) {
-    show(); // 显示
+    show();
 
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
     Sleep(delay);
@@ -243,33 +244,33 @@ int main() {
 #elif defined(__APPLE__)
 #endif
 
-    isFail();          // 判断是否会咬到自己
-    canEat();          // 判断是否能吃到*
-    switch (direction) // 选择路径
+    isFail();          // Judge if will eat self
+    canEat();          // Judge if will eat *
+    switch (direction) // choose which direction to move
     {
-    case 1: // 右
+    case 1: // Right
     {
       moveRight();
       break;
     }
-    case 2: // 上
+    case 2: // Up
     {
       moveUp();
       break;
     }
-    case 3: // 左
+    case 3: // Left
     {
       moveLeft();
       break;
     }
-    case 4: // 下
+    case 4: // Down
     {
       moveDown();
       break;
     }
-    case -1: // 退出
+    case -1: // Exit
     {
-      pthread_cancel(pid); // 关闭线程
+      pthread_cancel(pid); // Close pthread
       return -1;
       break;
     }
