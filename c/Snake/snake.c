@@ -228,7 +228,8 @@ void *key(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
 int main() {
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #elif defined(__linux__) || defined(__gnu_linux__)
-  system("stty -icanon"); // close lined buffer of input for no enter to capture input
+  // close lined buffer of input for no enter to capture input
+  system("stty -icanon");
 #elif defined(__APPLE__)
 #endif
   pthread_t pid;
