@@ -219,8 +219,8 @@ int main()
     // testEqualFold();
     // testIndexByte();
     // testIndex();
-    testHasPrefix();
-    testHasSuffix();
+    // testHasPrefix();
+    // testHasSuffix();
     // testToUpper();
     // testToLower();
     // testCount();
