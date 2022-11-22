@@ -86,7 +86,8 @@ void testIndex()
 }
 
 // Only ASCII supported; bugs still exist on UTF-8
-#define HasPrefix(s, prefix) ((_Bool)(strstr((s), (prefix)) == (s)))
+#define HasPrefix(s, prefix)                                                   \
+    ((_Bool)(strncmp((s), (prefix), strlen((prefix))) == 0))
 void testHasPrefix()
 {
     printf("%s\n", HasPrefix("abcdefg", "abc") ? "True" : "False");
