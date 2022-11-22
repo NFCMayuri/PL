@@ -181,6 +181,28 @@ void testCount()
     printf("Count(\"%s\",\"%s\")=%d\n", s1, s2, Count(s1, s2));
     printf("Count(\"%s\",\"%s\")=%d\n", s1, s3, Count(s1, s3));
 }
+_Bool Contains(const char *str, const char *substr)
+{
+    return (_Bool)strstr(str, substr);
+}
+
+void testContains()
+{
+    char s1[] = "I love Java Programming!";
+    char s2[] = "Programming";
+    char s3[] = "网络上学习Java";
+    char s4[] = "I love Java Programming!";
+    char s5[] = "I love Java programming!";
+    char s6[] = "Java";
+    char s7[] = "Java programming!";
+    printf("Contains(\"%s\",\"%s\")=%d\n", s1, s2, Contains(s1, s2));
+    printf("Contains(\"%s\",\"%s\")=%d\n", s1, s3, Contains(s1, s3));
+    printf("Contains(\"%s\",\"%s\")=%d\n", s1, s4, Contains(s1, s4));
+    printf("Contains(\"%s\",\"%s\")=%d\n", s1, s5, Contains(s1, s5));
+    printf("Contains(\"%s\",\"%s\")=%d\n", s1, s6, Contains(s1, s6));
+    printf("Contains(\"%s\",\"%s\")=%d\n", s1, s7, Contains(s1, s7));
+}
+
 int main()
 {
     // testEqualFold();
@@ -188,5 +210,6 @@ int main()
     // testIndex();
     // testToUpper();
     // testToLower();
-    testCount();
+    // testCount();
+    // testContains();
 }
