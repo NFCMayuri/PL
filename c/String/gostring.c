@@ -181,10 +181,7 @@ void testCount()
     printf("Count(\"%s\",\"%s\")=%d\n", s1, s2, Count(s1, s2));
     printf("Count(\"%s\",\"%s\")=%d\n", s1, s3, Count(s1, s3));
 }
-_Bool Contains(const char *str, const char *substr)
-{
-    return (_Bool)strstr(str, substr);
-}
+#define Contains(str, substr) ((_Bool)strstr((str), (substr)))
 
 void testContains()
 {
@@ -201,6 +198,8 @@ void testContains()
     printf("Contains(\"%s\",\"%s\")=%d\n", s1, s5, Contains(s1, s5));
     printf("Contains(\"%s\",\"%s\")=%d\n", s1, s6, Contains(s1, s6));
     printf("Contains(\"%s\",\"%s\")=%d\n", s1, s7, Contains(s1, s7));
+    printf("Contains(\"%s\",\"%s\")=%d\n", "", "", Contains("", ""));
+    printf("Contains(\"%s\",\"%s\")=%d\n", "1", "", Contains("1", ""));
 }
 
 int main()
@@ -211,5 +210,5 @@ int main()
     // testToUpper();
     // testToLower();
     // testCount();
-    // testContains();
+    testContains();
 }
