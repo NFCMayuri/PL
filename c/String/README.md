@@ -12,8 +12,8 @@
 - [ ] func LastIndexFunc(s string, f func(rune) bool) int
 
 - [ ] func TrimSpace(str string) string
-- [ ] func HasPrefix(s string, prefix string) bool
-- [ ] func HasSuffix(s string, suffix string) bool
+- [x] func HasPrefix(s string, prefix string) bool
+- [x] func HasSuffix(s string, suffix string) bool
 - [ ] func Replace(str string, old string, new string, n int)
 - [ ] func Title(s string) string
 - [ ] func ToTitle(s string) string

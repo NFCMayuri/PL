@@ -66,6 +66,7 @@ void testIndexByte()
     printf("%d\n", IndexByte("chicken", 'd'));
     printf("%d\n", IndexByte("你好", '\xA0'));
 }
+
 int Index(const char *s, const char *sep)
 {
     char *i = strstr(s, sep);
@@ -83,17 +84,31 @@ void testIndex()
     printf("%d\n", Index("RUNOOB", "NOOB"));
     printf("%d\n", Index("你好", "\xA0"));
 }
+
+// Only ASCII supported; bugs still exist on UTF-8
 _Bool HasPrefix(const char *s, const char *prefix)
 {
-    if (strstr(s, prefix) - s != 0)
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
+    return (_Bool)(strstr(s, prefix) == s);
 }
+void testHasPrefix()
+{
+    printf("%s\n", HasPrefix("abcdefg", "abc") ? "True" : "False");
+    printf("%s\n", HasPrefix("abcdefg", "ac") ? "True" : "False");
+    printf("%s\n", HasPrefix("你好", "\xE4") ? "True" : "False");
+}
+
+// Only ASCII supported; bugs still exist on UTF-8
+_Bool HasSuffix(const char *s, const char *prefix)
+{
+    return (_Bool)(strcmp(s + strlen(s) - strlen(prefix), prefix) == 0);
+}
+void testHasSuffix()
+{
+    printf("%s\n", HasSuffix("abcdefg", "efg") ? "True" : "False");
+    printf("%s\n", HasSuffix("abcdefg", "eg") ? "True" : "False");
+    printf("%s\n", HasSuffix("你好", "\xBD") ? "True" : "False");
+}
+
 char *ToUpper(const char *str)
 {
     char *ret = (char *)malloc(sizeof(char) * (strlen(str) + 1));
@@ -119,7 +134,6 @@ char *ToUpper(const char *str)
         return ret;
     }
 }
-
 void testToUpper()
 {
     char array[] = "你好Go！\nHello,GO!";
@@ -127,6 +141,7 @@ void testToUpper()
     printf("ToUpper(%s)\n%s", array, tmp);
     free(tmp);
 }
+
 char *ToLower(const char *str)
 {
     char *ret = (char *)malloc(sizeof(char) * (strlen(str) + 1));
@@ -159,6 +174,7 @@ void testToLower()
     printf("ToLower(%s)\n%s", array, tmp);
     free(tmp);
 }
+
 int Count(const char *s, const char *sep)
 {
     if (sep[0] == '\0')
@@ -181,8 +197,8 @@ void testCount()
     printf("Count(\"%s\",\"%s\")=%d\n", s1, s2, Count(s1, s2));
     printf("Count(\"%s\",\"%s\")=%d\n", s1, s3, Count(s1, s3));
 }
-#define Contains(str, substr) ((_Bool)strstr((str), (substr)))
 
+#define Contains(str, substr) ((_Bool)strstr((str), (substr)))
 void testContains()
 {
     char s1[] = "I love Java Programming!";
@@ -207,8 +223,10 @@ int main()
     // testEqualFold();
     // testIndexByte();
     // testIndex();
+    testHasPrefix();
+    testHasSuffix();
     // testToUpper();
     // testToLower();
     // testCount();
-    testContains();
+    // testContains();
 }
