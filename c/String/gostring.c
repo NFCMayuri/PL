@@ -86,10 +86,7 @@ void testIndex()
 }
 
 // Only ASCII supported; bugs still exist on UTF-8
-_Bool HasPrefix(const char *s, const char *prefix)
-{
-    return (_Bool)(strstr(s, prefix) == s);
-}
+#define HasPrefix(s, prefix) ((_Bool)(strstr((s), (prefix)) == (s)))
 void testHasPrefix()
 {
     printf("%s\n", HasPrefix("abcdefg", "abc") ? "True" : "False");
@@ -98,10 +95,8 @@ void testHasPrefix()
 }
 
 // Only ASCII supported; bugs still exist on UTF-8
-_Bool HasSuffix(const char *s, const char *prefix)
-{
-    return (_Bool)(strcmp(s + strlen(s) - strlen(prefix), prefix) == 0);
-}
+#define HasSuffix(s, prefix)                                                   \
+    ((_Bool)(strcmp((s) + strlen((s)) - strlen((prefix)), (prefix)) == 0))
 void testHasSuffix()
 {
     printf("%s\n", HasSuffix("abcdefg", "efg") ? "True" : "False");
