@@ -19,7 +19,7 @@
 - [ ] func ToTitle(s string) string
 - [x] func ToLower(str string) string
 - [x] func ToUpper(str string) string
-- [ ] func Contains(s, substr string) bool
+- [x] func Contains(s, substr string) bool
 - [ ] func ContainsAny(s,chars string)bool
 - [x] func Count(s, sep string) int
 - [ ] func Repeat(str string, count int)string
