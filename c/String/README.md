@@ -17,11 +17,11 @@
 - [ ] func Replace(str string, old string, new string, n int)
 - [ ] func Title(s string) string
 - [ ] func ToTitle(s string) string
-- [ ] func ToLower(str string) string
-- [ ] func ToUpper(str string) string
+- [x] func ToLower(str string) string
+- [x] func ToUpper(str string) string
 - [ ] func Contains(s, substr string) bool
 - [ ] func ContainsAny(s,chars string)bool
-- [ ] func Count(s, sep string) int
+- [x] func Count(s, sep string) int
 - [ ] func Repeat(str string, count int)string
 - [ ] func Trim(str string, cut string)
 - [ ] func TrimLeft(str string, cut string)

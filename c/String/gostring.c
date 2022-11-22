@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-// Only English supported; utf8 still have bugs
+
+// Only ASCII supported; bugs still exist on UTF-8
 _Bool EqualFold(const char *s1, const char *s2)
 {
     int i = strlen(s1);
@@ -92,9 +94,99 @@ _Bool HasPrefix(const char *s, const char *prefix)
         return 1;
     }
 }
+char *ToUpper(const char *str)
+{
+    char *ret = (char *)malloc(sizeof(char) * (strlen(str) + 1));
+    int i;
+    if (ret == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        for (i = 0; str[i] != '\0'; i++)
+        {
+            if (str[i] >= 'a' && str[i] <= 'z')
+            {
+                ret[i] = str[i] - 'a' + 'A';
+            }
+            else
+            {
+                ret[i] = str[i];
+            }
+        }
+        ret[i] = '\0';
+        return ret;
+    }
+}
+
+void testToUpper()
+{
+    char array[] = "你好Go！\nHello,GO!";
+    char *tmp = ToUpper(array);
+    printf("ToUpper(%s)\n%s", array, tmp);
+    free(tmp);
+}
+char *ToLower(const char *str)
+{
+    char *ret = (char *)malloc(sizeof(char) * (strlen(str) + 1));
+    int i;
+    if (ret == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        for (i = 0; str[i] != '\0'; i++)
+        {
+            if (str[i] >= 'A' && str[i] <= 'Z')
+            {
+                ret[i] = str[i] - 'A' + 'a';
+            }
+            else
+            {
+                ret[i] = str[i];
+            }
+        }
+        ret[i] = '\0';
+        return ret;
+    }
+}
+void testToLower()
+{
+    char array[] = "你好Go！\nHello,GO!";
+    char *tmp = ToLower(array);
+    printf("ToLower(%s)\n%s", array, tmp);
+    free(tmp);
+}
+int Count(const char *s, const char *sep)
+{
+    if (sep[0] == '\0')
+    {
+        return strlen(s) + 1;
+    }
+    int count = 0;
+    while ((s = (strstr(s, sep))) != NULL)
+    {
+        s++;
+        count++;
+    }
+    return count;
+}
+void testCount()
+{
+    char *s1 = "1145141919810";
+    char *s2 = "2";
+    char *s3 = "";
+    printf("Count(\"%s\",\"%s\")=%d\n", s1, s2, Count(s1, s2));
+    printf("Count(\"%s\",\"%s\")=%d\n", s1, s3, Count(s1, s3));
+}
 int main()
 {
     // testEqualFold();
     // testIndexByte();
-    testIndex();
+    // testIndex();
+    // testToUpper();
+    // testToLower();
+    testCount();
 }
