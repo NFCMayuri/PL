@@ -127,45 +127,52 @@ void isFail() {
   {
     printf("fail!\n");
     direction = -1;
-  }
-  if (direction == 1) // Right
-  {
-    for (i = n; i > 0; i--) {
-      if ((p[0] + 1) == p[i]) // Right of the head is body
-      {
-        printf("fail!\n");
-        direction = -1;
+  } else {
+    switch (direction) {
+    // Right
+    case 1: {
+      for (i = n; i > 0; i--) {
+        if ((p[0] + 1) == p[i]) // Right of the head is body
+        {
+          printf("fail!\n");
+          direction = -1;
+        }
       }
+      break;
     }
-  }
-  if (direction == 2) // Up
-  {
-    for (i = n; i > 0; i--) {
-      if ((p[0] - X) == p[i]) // Up of the head is body
-      {
-        printf("fail!\n");
-        direction = -1;
+    // Up
+    case 2: {
+      for (i = n; i > 0; i--) {
+        if ((p[0] - X) == p[i]) // Up of the head is body
+        {
+          printf("fail!\n");
+          direction = -1;
+        }
       }
+      break;
     }
-  }
-  if (direction == 3) // Left
-  {
-    for (i = n; i > 0; i--) {
-      if ((p[0] - 1) == p[i]) // Left of the head is body
-      {
-        printf("fail!\n");
-        direction = -1;
+    // Left
+    case 3: {
+      for (i = n; i > 0; i--) {
+        if ((p[0] - 1) == p[i]) // Left of the head is body
+        {
+          printf("fail!\n");
+          direction = -1;
+        }
       }
+      break;
     }
-  }
-  if (direction == 4) // Down
-  {
-    for (i = n; i > 0; i--) {
-      if ((p[0] + X) == p[i]) // Down of the head is body
-      {
-        printf("fail!\n");
-        direction = -1;
+    // Down
+    case 4: {
+      for (i = n; i > 0; i--) {
+        if ((p[0] + X) == p[i]) // Down of the head is body
+        {
+          printf("fail!\n");
+          direction = -1;
+        }
       }
+      break;
+    }
     }
   }
 }
