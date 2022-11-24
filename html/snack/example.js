@@ -52,10 +52,10 @@ for(let i = 0;i<row;i++){
 class Cell{
     constructor(x, y, color){
         if(isThroughTheWall){
-            if(x < 0) x = row-1;
-            if(x > row - 1) x = 0;
-            if(y < 0) y = row - 1;
-            if(y > row - 1) y = 0;
+            if(x < 0) x = row+x;
+            if(x > row - 1) x = x-row;
+            if(y < 0) y = row+y;
+            if(y > row - 1) y = y-row;
         }else{
             if(x < 0 || y < 0|| x > row - 1 || y > row - 1){
                 clearInterval(timer);
