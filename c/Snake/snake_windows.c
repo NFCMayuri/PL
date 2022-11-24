@@ -24,15 +24,16 @@ int n = 3; // The length of snake body (without head)
 int i, j;
 int direction = 1; // 1.right;2.up;3.left;4.down;-1.exit
 int delay = 200;   // delay 0.2s(200ms)
-void moveBody()
-{
-    *p[n] = 0;
-    for (i = n; i > 0; i--)
-    {
-        p[i] = p[i - 1]; // per part goes to the address of the next part ofbody
+#define moveBody()                                                             \
+    {                                                                          \
+        *p[n] = 0;                                                             \
+        for (i = n; i > 0; i--)                                                \
+        {                                                                      \
+            p[i] = p[i - 1]; /* per part goes to the address of the next part  \
+                                ofbody*/                                       \
+        }                                                                      \
+        *p[0] = BODY; /* The First part of snake body come to snake head*/     \
     }
-    *p[0] = BODY; // The First part of snake body come to snake head
-}
 void moveRight()
 {
     moveBody();
