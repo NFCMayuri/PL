@@ -210,7 +210,6 @@ DWORD WINAPI
 ThreadProc1(LPVOID lpParam) // Direction Control：w,s,a,d-->Up Down Left Right
 {
     char k;
-    int temp;
     while (1)
     {
         k = _getch();
