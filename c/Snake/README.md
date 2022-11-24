@@ -13,4 +13,4 @@
 >> please use **MSVS or GNU GCC (e.g. MinGW or MinGW64(without win32pthreads)) supported** for pthreads4w support
 
 >>gcc snake.c -I`${The Dir of pthreads4w}`<br>
-relpace `${The Dir of pthreads4w}` according to your own setting
+replace `${The Dir of pthreads4w}` according to your own setting
