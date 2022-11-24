@@ -30,6 +30,7 @@ int n = 3; // The length of snake body (without head)
 int i, j;
 int direction = 1; // 1.right;2.up;3.left;4.down;-1.exit
 int delay = 200;   // delay 0.2s(200ms)
+_Bool isPause = 0;
 #define moveBody()                                                             \
     {                                                                          \
         *p[n] = 0;                                                             \
@@ -68,6 +69,7 @@ void moveUp()
 void show()
 {
     system("clear");
+    printf("Your Score is:%d\n", n - 3);
     for (i = 0; i < X; i++)
         printf("_");
     printf("\n");
@@ -83,7 +85,7 @@ void show()
     }
     for (i = 0; i < X; i++)
         printf("-");
-    printf("\nw,s,a,d->Up Down Left Right;j,k->Speed Up/Down;ESC: Exit\n");
+    printf("\nw,s,a,d->Up Down Left Right;\nj,k->Speed Up/Down;\nESC: Exit\n");
 }
 
 void randomApple() // Random
@@ -258,8 +260,22 @@ void *key(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
         }
         case 27: // ESC
         {
-            printf("Exit！\n");
+            printf("Exit!\n");
+            isPause = 0;
             direction = -1;
+            break;
+        }
+        case ' ': // Space
+        {
+            if (isPause)
+            {
+                printf("Continue!\n");
+            }
+            else
+            {
+                printf("Pause!\n");
+            }
+            isPause = !isPause;
             break;
         }
         }
@@ -280,13 +296,15 @@ int main()
     while (1)
     {
         show();
-
+        do
+        {
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
-        Sleep(delay);
+            Sleep(delay);
 #elif defined(__linux__) || defined(__gnu_linux__)
-        usleep(delay * 1000);
+            usleep(delay * 1000);
 #elif defined(__APPLE__)
 #endif
+        } while (isPause);
 
         isFail();          // Judge if will eat self
         canEat();          // Judge if will eat *
@@ -314,6 +332,7 @@ int main()
         }
         case -1: // Exit
         {
+            printf("Your Final Score is:%d\n", n - 3);
             pthread_cancel(pid); // Close pthread
             return -1;
             break;
