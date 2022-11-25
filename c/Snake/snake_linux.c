@@ -251,6 +251,7 @@ void *key(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
             printf("Exit!\n");
             isPause = 0;
             direction = -1;
+            pthread_exit(NULL);
             break;
         }
         case ' ': // Space
@@ -273,8 +274,12 @@ void *key(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
 int main()
 {
     system("stty -icanon");
-    pthread_t pid;
-    pthread_create(&pid, NULL, key, NULL); // Create pthread to capture input
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
+    // set pthread_attr to detached
+    pthread_t tid;
+    pthread_create(&tid, &attr, key, NULL); // Create pthread to capture input
     randomApple();
     while (1)
     {
@@ -311,7 +316,6 @@ int main()
         case -1: // Exit
         {
             printf("Your Final Score is:%d", n - 3);
-            pthread_cancel(pid); // Close pthread
             return -1;
             break;
         }

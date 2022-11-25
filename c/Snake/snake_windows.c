@@ -255,6 +255,7 @@ ThreadProc1(LPVOID lpParam) // Direction Control：w,s,a,d-->Up Down Left Right
             printf("Exit!\n");
             isPause = 0;
             direction = -1;
+            return 0;
             break;
         }
         case ' ': // Space
