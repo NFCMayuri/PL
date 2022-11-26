@@ -2,8 +2,8 @@ let direction = 4;
 let row = 40;
 // let isThroughTheWall = true;
 
-let headColor = 'red';
-let bodyColor = 'orange';
+let HeadColor = 'red';
+let SnakeBodyColor = 'orange';
 let foodColor = 'green';
 let borderColor = 'grey';
 eaten = false;
@@ -11,7 +11,7 @@ head = {
     x: 3,
     y: 0
 };
-body = [
+SnakeBody = [
     { x: 2, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 0 }
 ];
 food = { x: 0, y: 0 }
@@ -89,9 +89,9 @@ document.onkeyup = function (e) {
 function Start() {
     Init();
     //蛇头蛇身食物上色
-    document.getElementById(head.x + "-" + head.y).style.backgroundColor = headColor;
-    for (i of body) {
-        document.getElementById(i.x + "-" + i.y).style.backgroundColor = bodyColor;
+    document.getElementById(head.x + "-" + head.y).style.backgroundColor = HeadColor;
+    for (i of SnakeBody) {
+        document.getElementById(i.x + "-" + i.y).style.backgroundColor = SnakeBodyColor;
     }
     //随机食物位置
     randomFood()
@@ -106,9 +106,9 @@ function Start() {
                 randomFood();
             }
             //蛇头加入蛇身
-            body.unshift({ x: head.x, y: head.y });
+            SnakeBody.unshift({ x: head.x, y: head.y });
             //蛇身上色
-            document.getElementById(head.x + "-" + head.y).style.backgroundColor = bodyColor;
+            document.getElementById(head.x + "-" + head.y).style.backgroundColor = SnakeBodyColor;
             //移动蛇头
             switch (direction) {
                 case 1:
@@ -125,11 +125,11 @@ function Start() {
                     break;
             }
             //蛇头上色
-            document.getElementById(head.x + "-" + head.y).style.backgroundColor = headColor;
+            document.getElementById(head.x + "-" + head.y).style.backgroundColor = HeadColor;
             //如果没吃东西去掉末尾的颜色并裁剪末尾
             if (!eaten) {
-                document.getElementById((body[body['length'] - 1]).x + "-" + (body[body['length'] - 1]).y).style.backgroundColor = ""
-                body.pop()
+                document.getElementById((SnakeBody[SnakeBody.length - 1]).x + "-" + (SnakeBody[SnakeBody.length - 1]).y).style.backgroundColor = ""
+                SnakeBody.pop()
             } else {
                 eaten = false;
             }
@@ -138,7 +138,7 @@ function Start() {
 }
 
 function isFail() {
-    if (isBody(head.x, head.y)) {
+    if (isSnakeBody(head.x, head.y)) {
         return true;
     } else if ((head.x >= row || head.x < 0) || (head.y >= row || head.y < 0)) {
         return true;
@@ -147,9 +147,9 @@ function isFail() {
     }
 }
 
-function isBody(x, y) {
+function isSnakeBody(x, y) {
     ret = false;
-    for (i of body) {
+    for (i of SnakeBody) {
         if ((i.x === x) && (i.y === y)) {
             ret = true;
         }
@@ -207,6 +207,6 @@ function randomFood() {
     do {
         food.x = Math.floor(Math.random() * row)
         food.y = Math.floor(Math.random() * row)
-    } while (isBody(food.x, food.y) || (food.x === head.x && food.y === head.y))
+    } while (isSnakeBody(food.x, food.y) || (food.x === head.x && food.y === head.y))
     document.getElementById(food.x + "-" + food.y).style.backgroundColor = foodColor;
 }
