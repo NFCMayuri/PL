@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+    <link rel="stylesheet" href="snake.css">
+</head>
+
+<body>
+    <div class="bottom">
+        <div style="max-width:50%;">
+            <h2>贪吃蛇</h2>
+            <p>
+                贪吃蛇（也叫做贪食蛇）游戏是一款休闲益智类游戏，有PC和手机等多平台版本。既简单又耐玩。该游戏通过控制蛇头方向吃蛋，从而使得蛇变得越来越长。
+            </p>
+            <input type="button" onclick="Start()" value="在线游玩">
+        </div>
+        <img src="example.png" alt="" style="height: 380px;width: 380px;position: relative; left:50%;top:-20px;">
+    </div>
+
+    <div class="middle">
+        <div class="box" style="max-width:24%">
+            <div class="content"><img src="windows.webp" alt="" style="height: 213px;width: 380px"></div>
+            <div class="content">
+                <h2>Windows版</h2>
+            </div>
+            <div class="content">
+                <p>下载二进制文件(Windows_x86)</p>
+            </div>
+            <div class="content"><a href="./bin/snake.exe" download>点此立即下载</a></div>
+        </div>
+
+        <div class="box" style="max-width:24%">
+            <div class="content"><img src="linux.webp" alt="" style="height: 213px;width: 380px"></div>
+            <div class="content">
+                <h2>Linux版</h2>
+            </div>
+            <div class="content">
+                <p>下载二进制文件(Linux_x86)</p>
+            </div>
+            <div class="content"><a href="bin/snake" download>点此立即下载</a></div>
+        </div>
+
+        <div class="box" style="max-width:24%">
+            <div class="content"><img src="macos.png" alt=""
+                    style="height: 303px;width: 380px;position: relative;top: 20;"></div>
+            <div class="content">
+                <h2>MacOS</h2>
+            </div>
+            <div class="content">
+                <p>请自行编译(没有苹果电脑)</p>
+            </div>
+            <div style="display:flex;flex-direction: row;justify-content: space-between;max-width: 80%;">
+                <div class="content"><a href="src/snake_Linux.c" download>点此下载源码</a></div>
+            </div>
+        </div>
+
+        <div class="box" style="max-width:24%">
+            <div class="content"><img src="browsers.webp" alt=""
+                    style="height: 303px;width: 380px;position: relative;top: 20;"></div>
+            <div class="content">
+                <h2>在线游玩</h2>
+            </div>
+            <div class="content">
+                <p>一键体验 方便快捷</p>
+            </div>
+            <div class="content"><button onclick="Start()">点击进入</button></div>
+        </div>
+
+    </div>
+
+
+
+    <div class="top">
+        <div class="parts">
+            <img src="gldn-Quick-Link-Icon-80x80-Microsoft-365.webp" alt="" style="height: 50px;width: 50px"><br>
+            <a href="src/snake_linux.c" download>Linux版源码</a>
+        </div>
+        <div class="parts">
+            <img src="gldn-Quick-Link-Icon-80x80-Microsoft-365.webp" alt="" style="height: 50px;width: 50px"><br>
+            <a href="src/snake_windows.c" download>Windows版源码</a>
+        </div>
+
+        <div class="parts">
+            <img src="apple.png" alt="" style="height: 50px;width: 40px"><br>
+            <a href="src/snake_linux.c" download>MacOS版源码</a>
+        </div>
+
+        <div class="parts">
+            <img src="chrome.png" alt="browsers" style="height: 50px;width: 50px"><br>
+            <a href="../snake.js" download>浏览器版源码</a>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script src="../snake.js"></script>
