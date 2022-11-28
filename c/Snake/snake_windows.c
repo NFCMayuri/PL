@@ -30,20 +30,20 @@ _Bool isPause = 0;
         *p[n] = 0;                                                             \
         for (i = n; i > 0; i--)                                                \
         {                                                                      \
-            p[i] = p[i - 1]; /* per part goes to the address of the next part  \
-                                ofbody*/                                       \
+            p[i] = p[i - 1];                                                   \
+            /* per part goes to the address of the next part of body*/         \
         }                                                                      \
-        *p[0] = BODY; /* The First part of snake body come to snake head*/     \
+        *p[0] = BODY;                                                          \
+        /* The First part of snake body come to snake head*/                   \
     }
 
+// https://cloud.tencent.com/developer/article/1790043?from=15425
 // https://cloud.tencent.com/developer/article/2132941?from=15425
 #define gotoxy(x, y)                                                           \
     {                                                                          \
-        HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);                       \
-        COORD coord;                             /* coord */                   \
-        coord.X = x;                             /* x */                       \
-        coord.Y = y;                             /* y */                       \
-        SetConsoleCursorPosition(handle, coord); /* Move Cursor */             \
+        COORD coord = {(x), (y)}; /* coord */                                  \
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),              \
+                                 coord); /* Move Cursor to coord */            \
     }
 
 void moveRight()
@@ -75,20 +75,18 @@ void show()
 {
     system("clear");
     printf("Your Score is:%d\n", n - 3);
-    for (i = 0; i < WIDTH*2; i++)
+    for (i = 0; i < WIDTH * 2; i++)
         printf("_");
     printf("\n");
     for (i = 0; i < HEIGHT; i++)
     {
-        // printf("|");
         for (j = 0; j < WIDTH; j++)
         {
             if (a[i][j] == 0)
-                printf("_|"); //□■
+                printf("_|");
             else
                 printf("%c|", a[i][j]);
         }
-        // printf("|");
         printf("\n");
     }
     printf("\nw,s,a,d->Up Down Left Right;\nj,k->Speed Up/Down;\nESC: Exit\n");

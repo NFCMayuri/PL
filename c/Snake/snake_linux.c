@@ -12,11 +12,11 @@
 
 // char HEAD = '@'; // The shape of snake head
 // char BODY = 'O'; // The shape of snake body
-#define HEAD '@'                           // The shape of snake head
-#define BODY 'O'                           // The shape of snake body
+#define HEAD '@'                                    // The shape of snake head
+#define BODY 'O'                                    // The shape of snake body
 char a[HEIGHT][WIDTH] = {{BODY, BODY, BODY, HEAD}}; // The initial char is 0
 char *p[HEIGHT * WIDTH] = {&a[0][3], &a[0][2], &a[0][1],
-                  &a[0][0]}; // p[0] stand for snake head
+                           &a[0][0]}; // p[0] stand for snake head
 
 int n = 3; // The length of snake body (without head)
 int i, j;
@@ -28,11 +28,14 @@ _Bool isPause = 0;
         *p[n] = 0;                                                             \
         for (i = n; i > 0; i--)                                                \
         {                                                                      \
-            p[i] = p[i - 1]; /* per part goes to the address of the next part  \
-                                ofbody*/                                       \
+            p[i] = p[i - 1];                                                   \
+            /* per part goes to the address of the next part of body*/         \
         }                                                                      \
-        *p[0] = BODY; /* The First part of snake body come to snake head*/     \
+        *p[0] = BODY;                                                          \
+        /* The First part of snake body come to snake head*/                   \
     }
+#define gotoxy(x, y) printf("%c[%d;%df", 0x1B, ((y) + 1), ((x) + 1))
+
 void moveRight()
 {
     moveBody();
@@ -62,12 +65,11 @@ void show()
 {
     system("clear");
     printf("Your Score is:%d\n", n - 3);
-    for (i = 0; i < WIDTH*2; i++)
+    for (i = 0; i < WIDTH * 2; i++)
         printf("_");
     printf("\n");
     for (i = 0; i < HEIGHT; i++)
     {
-        // printf("|");
         for (j = 0; j < WIDTH; j++)
         {
             if (a[i][j] == 0)
@@ -75,7 +77,6 @@ void show()
             else
                 printf("%c|", a[i][j]);
         }
-        // printf("|");
         printf("\n");
     }
     printf("\nw,s,a,d->Up Down Left Right;\nj,k->Speed Up/Down;\nESC: Exit\n");
