@@ -7,15 +7,15 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define X 40
-#define Y 20
+#define WIDTH 40
+#define HEIGHT 20
 
 // char HEAD = '@'; // The shape of snake head
 // char BODY = 'O'; // The shape of snake body
 #define HEAD '@'                           // The shape of snake head
 #define BODY 'O'                           // The shape of snake body
-char a[Y][X] = {{BODY, BODY, BODY, HEAD}}; // The initial char is 0
-char *p[Y * X] = {&a[0][3], &a[0][2], &a[0][1],
+char a[HEIGHT][WIDTH] = {{BODY, BODY, BODY, HEAD}}; // The initial char is 0
+char *p[HEIGHT * WIDTH] = {&a[0][3], &a[0][2], &a[0][1],
                   &a[0][0]}; // p[0] stand for snake head
 
 int n = 3; // The length of snake body (without head)
@@ -48,13 +48,13 @@ void moveLeft()
 void moveDown()
 {
     moveBody();
-    p[0] = p[0] + X;
+    p[0] = p[0] + WIDTH;
     *p[0] = HEAD;
 }
 void moveUp()
 {
     moveBody();
-    p[0] = p[0] - X;
+    p[0] = p[0] - WIDTH;
     *p[0] = HEAD;
 }
 
@@ -62,20 +62,20 @@ void show()
 {
     system("clear");
     printf("Your Score is:%d\n", n - 3);
-    for (i = 0; i < X; i++)
+    for (i = 0; i < WIDTH; i++)
         printf("_");
     printf("\n");
-    for (i = 0; i < Y; i++)
+    for (i = 0; i < HEIGHT; i++)
     {
         // printf("|");
-        for (j = 0; j < X; j++)
+        for (j = 0; j < WIDTH; j++)
         {
             printf("%c", (a[i][j] == 0) ? ' ' : a[i][j]);
         }
         // printf("|");
         printf("\n");
     }
-    for (i = 0; i < X; i++)
+    for (i = 0; i < WIDTH; i++)
         printf("-");
     printf("\nw,s,a,d->Up Down Left Right;\nj,k->Speed Up/Down;\nESC: Exit\n");
 }
@@ -85,8 +85,8 @@ void randomApple() // Random
     srand(time(NULL));
     do
     {
-        i = rand() % Y;
-        j = rand() % X;
+        i = rand() % HEIGHT;
+        j = rand() % WIDTH;
         // if random location is 0 ->*;else find again and again
     } while (a[i][j] != 0);
     a[i][j] = '*';
@@ -108,7 +108,7 @@ void canEat()
     }
     // Up
     case 2: {
-        if (*(p[0] - X) == '*')
+        if (*(p[0] - WIDTH) == '*')
         {
             n++; // length++
             p[n] = p[n - 1];
@@ -128,7 +128,7 @@ void canEat()
     }
     // Down
     case 4: {
-        if (*(p[0] + X) == '*')
+        if (*(p[0] + WIDTH) == '*')
         {
             n++; // length++
             p[n] = p[n - 1];
@@ -142,7 +142,7 @@ void canEat()
 void isFail()
 {
     if (p[0] < &a[0][0] ||
-        p[0] > &a[Y - 1][X - 1]) // snake is not in the matrix
+        p[0] > &a[HEIGHT - 1][WIDTH - 1]) // snake is not in the matrix
     {
         printf("fail!\n");
         direction = -1;
@@ -167,7 +167,7 @@ void isFail()
         case 2: {
             for (i = n; i > 0; i--)
             {
-                if ((p[0] - X) == p[i]) // Up of the head is body
+                if ((p[0] - WIDTH) == p[i]) // Up of the head is body
                 {
                     printf("fail!\n");
                     direction = -1;
@@ -191,7 +191,7 @@ void isFail()
         case 4: {
             for (i = n; i > 0; i--)
             {
-                if ((p[0] + X) == p[i]) // Down of the head is body
+                if ((p[0] + WIDTH) == p[i]) // Down of the head is body
                 {
                     printf("fail!\n");
                     direction = -1;
