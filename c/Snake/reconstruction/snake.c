@@ -1,6 +1,6 @@
-#include "snake.h"
+#include "Snake.h"
+#include "GlobalVar.h"
 #include "Sleep.h"
-#include "globalvar.h"
 #include <stdio.h>
 #include <stdlib.h>
 int main()
@@ -19,13 +19,25 @@ int main()
         case 0:
             break;
         case 1:
-            PRINTXY(HEIGHT + 7, 0, "Fail!\nDon't hit the wall!\n");
+            gotoxy(HEIGHT + 7, 0);
+            printf("Fail!Don't eat your body!\nYour Final Score is:%d\n",
+                   n - 3);
+            return -1;
             break;
         case 2:
-            PRINTXY(HEIGHT + 7, 0, "Fail!\nDon't eat your body!\n");
+            gotoxy(HEIGHT + 7, 0);
+            printf("Fail!Don't eat your body!\nYour Final Score is:%d\n",
+                   n - 3);
+            return -1;
             break;
         }
-        canEat();
+
+        if (canEat())
+        {
+            n++; // length++
+            p[n] = p[n - 1];
+        }
+
         switch (direction) // choose which direction to move
         {
         case 1: // Right
@@ -46,12 +58,6 @@ int main()
         case 4: // Down
         {
             moveDown();
-            break;
-        }
-        case -1: // Exit
-        {
-            printf("Your Final Score is:%d\n", n - 3);
-            return -1;
             break;
         }
         }

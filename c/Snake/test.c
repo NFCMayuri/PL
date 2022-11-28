@@ -1,22 +1,15 @@
-#include <conio.h>
-#include <stdio.h>
-#include <windows.h>
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define gotoxy(y, x)                                                           \
-    {                                                                          \
-        COORD coord = {(x), (y)}; /* coord */                              \
-        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),              \
-                                 coord); /* Move Cursor to coord */            \
-    }
+#define gotoxy(y, x) printf("%c[%d;%df", 0x1B, ((y) + 1), ((x) + 1))
 int main()
 {
-    /* 我的第一个 C 程序 */
+    system("stty -icanon");
     system("clear");
-    printf("Hello, World! \n0123456789\n1234567890\n2345678901\n3456789012\n4567890123\n5678901234");
+    printf("Hello, World! "
+           "\n0123456789\n1234567890\n2345678901\n3456789012\n4567890123\n56789"
+           "01234");
+    getchar();
     gotoxy(3, 2);
     printf("asdfdsasdf");
     gotoxy(8, 9);

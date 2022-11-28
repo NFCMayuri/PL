@@ -1,6 +1,6 @@
 #ifndef _KEYMONITOR_H
 #define _KEYMONITOR_H
-#include "globalvar.h"
+#include "GlobalVar.h"
 #include <stdio.h>
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
@@ -15,6 +15,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #define KeyMonitor_Starter()                                                   \
+    system("stty -icanon");                                                    \
     pthread_attr_t attr;                                                       \
     pthread_t tid;                                                             \
     pthread_attr_init(&attr);                                                  \

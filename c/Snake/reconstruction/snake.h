@@ -1,12 +1,12 @@
 #ifndef _SNAKE_H
 #define _SNAKE_H
 #include "GetXYFromArrays.h"
+#include "GlobalVar.h"
+#include "GotoXY.h"
 #include "KeyMonitor.h"
-#include "globalvar.h"
-#include "gotoxy.h"
-#include "mapInit.h"
-#include "move.h"
-#include "random.h"
+#include "MapInit.h"
+#include "Move.h"
+#include "Random.h"
 #include "Sleep.h"
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
@@ -24,7 +24,7 @@
     {                                                                          \
         gotoxy((x), (y));                                                      \
         printf("%s", (content));                                               \
-        gotoxy(0, 1000);                                                       \
+        gotoxy(HEIGHT + 7, 40);                                                \
     }
 
 /* Random Food */
@@ -51,8 +51,6 @@ _Bool canEat()
     case 1: {
         if (*(p[0] + 1) == '*')
         {
-            n++; // length++
-            p[n] = p[n - 1];
             return 1;
         }
         break;
@@ -61,8 +59,6 @@ _Bool canEat()
     case 2: {
         if (*(p[0] - WIDTH) == '*')
         {
-            n++; // length++
-            p[n] = p[n - 1];
             return 1;
         }
         break;
@@ -71,8 +67,6 @@ _Bool canEat()
     case 3: {
         if (*(p[0] - 1) == '*')
         {
-            n++; // length++
-            p[n] = p[n - 1];
             return 1;
         }
         break;
@@ -81,8 +75,6 @@ _Bool canEat()
     case 4: {
         if (*(p[0] + WIDTH) == '*')
         {
-            n++; // length++
-            p[n] = p[n - 1];
             return 1;
         }
         break;
@@ -97,7 +89,7 @@ int isFail()
     if (p[0] < &a[0][0] ||
         p[0] > &a[HEIGHT - 1][WIDTH - 1]) // snake is not in the matrix
     {
-        gotoxy(27, 0);
+        // gotoxy(27, 0);
         // printf("Fail!\nDon't hit the wall!\n");
         direction = -1;
         return 1;
@@ -113,7 +105,7 @@ int isFail()
                 {
                     if ((p[0] + 1) == p[i]) // Right of the head is body
                     {
-                        gotoxy(27, 0);
+                        // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
                         direction = -1;
                         return 2;
@@ -129,7 +121,7 @@ int isFail()
                 {
                     if ((p[0] - WIDTH) == p[i]) // Up of the head is body
                     {
-                        gotoxy(27, 0);
+                        // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
                         direction = -1;
                         return 2;
@@ -145,7 +137,7 @@ int isFail()
                 {
                     if ((p[0] - 1) == p[i]) // Left of the head is body
                     {
-                        gotoxy(27, 0);
+                        // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
                         direction = -1;
                         return 2;
