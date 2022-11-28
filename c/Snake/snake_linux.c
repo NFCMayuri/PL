@@ -205,7 +205,7 @@ void isFail()
     }
 }
 
-void *key(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
+void *KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
 {
     char k;
     while (1)
@@ -281,7 +281,7 @@ int main()
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
     // set pthread_attr to detached
     pthread_t tid;
-    pthread_create(&tid, &attr, key, NULL); // Create pthread to capture input
+    pthread_create(&tid, &attr, KeyMonitor, NULL); // Create pthread to capture input
     randomApple();
     while (1)
     {

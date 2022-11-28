@@ -256,7 +256,7 @@ _Bool isFail()
 }
 
 DWORD WINAPI
-ThreadProc1(LPVOID lpParam) // Direction Control：w,s,a,d-->Up Down Left Right
+KeyMonitor(LPVOID lpParam) // Direction Control：w,s,a,d-->Up Down Left Right
 {
     char k;
     while (1)
@@ -327,7 +327,7 @@ ThreadProc1(LPVOID lpParam) // Direction Control：w,s,a,d-->Up Down Left Right
 int main()
 {
 
-    HANDLE hThread1 = CreateThread(NULL, 0, ThreadProc1, NULL, 0, NULL);
+    HANDLE hThread1 = CreateThread(NULL, 0, KeyMonitor, NULL, 0, NULL);
     show();
     randomApple();
     while (1)
