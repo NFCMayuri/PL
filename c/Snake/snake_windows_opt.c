@@ -33,7 +33,7 @@ _Bool isPause = 0;
         SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),              \
                                  coord); /* Move Cursor to coord */            \
     }
-    
+
 #define moveBody()                                                             \
     {                                                                          \
         gotoxy(((p[0] - a[0]) / WIDTH) + 2, 2 * ((p[0] - a[0]) % WIDTH));      \
@@ -51,8 +51,10 @@ _Bool isPause = 0;
 void moveRight()
 {
     moveBody();
-    p[0] = p[0] + 1; // Move snake head
-    *p[0] = HEAD;    // change the char of new head(new address)'s shape to HEAD
+    p[0] = p[0] + 1;
+    /* Move snake head */
+    *p[0] = HEAD;
+    /* change the char of new head(new address)'s shape to HEAD */
     gotoxy(((p[0] - a[0]) / WIDTH) + 2, 2 * ((p[0] - a[0]) % WIDTH));
     printf("%c", HEAD);
     gotoxy(0, 62);
@@ -417,6 +419,7 @@ int main()
         }
         case -1: // Exit
         {
+            gotoxy(27, 0);
             printf("Your Final Score is:%d\n", n - 3);
             CloseHandle(hThread1);
             return -1;
