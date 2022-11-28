@@ -306,6 +306,7 @@ KeyMonitor(LPVOID lpParam) // Direction Control：w,s,a,d-->Up Down Left Right
         }
         case 27: // ESC
         {
+            gotoxy(27, 0);
             printf("Exit!\n");
             isPause = 0;
             direction = -1;
@@ -316,10 +317,12 @@ KeyMonitor(LPVOID lpParam) // Direction Control：w,s,a,d-->Up Down Left Right
         {
             if (isPause)
             {
+                gotoxy(27, 0);
                 printf("Continue!\n");
             }
             else
             {
+                gotoxy(27, 0);
                 printf("Pause!\n");
             }
             isPause = !isPause;
@@ -370,9 +373,6 @@ int main()
             else
             {
                 moveUp();
-                gotoxy(((p[n] - a[0]) / WIDTH) + 2,
-                       2 * ((p[n] - a[0]) % WIDTH));
-                printf("%c", '_');
                 gotoxy(0, 14);
                 printf("%d", n - 3);
                 gotoxy(0, 62);
@@ -389,9 +389,6 @@ int main()
             else
             {
                 moveLeft();
-                gotoxy(((p[n] - a[0]) / WIDTH) + 2,
-                       2 * ((p[n] - a[0]) % WIDTH));
-                printf("%c", '_');
                 gotoxy(0, 14);
                 printf("%d", n - 3);
                 gotoxy(0, 62);
@@ -408,9 +405,6 @@ int main()
             else
             {
                 moveDown();
-                gotoxy(((p[n] - a[0]) / WIDTH) + 2,
-                       2 * ((p[n] - a[0]) % WIDTH));
-                printf("%c", '_');
                 gotoxy(0, 14);
                 printf("%d", n - 3);
                 gotoxy(0, 62);

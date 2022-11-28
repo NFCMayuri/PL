@@ -207,68 +207,75 @@ void isFail()
 
 void *KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
 {
-    char k;
-    while (1)
+    if (direction == -1)
     {
+        pthread_exit(NULL);
+    }
+    else
+    {
+        char k;
+        while (1)
+        {
 
-        k = getchar();
-        switch (k)
-        {
-        case 'w': // Up
-        {
-            if (direction != 4)
-                direction = 2;
-            break;
-        }
-        case 's': // Down
-        {
-            if (direction != 2)
-                direction = 4;
-            break;
-        }
-        case 'a': // Left
-        {
-            if (direction != 1)
-                direction = 3;
-            break;
-        }
-        case 'd': // Right
-        {
-            if (direction != 3)
-                direction = 1;
-            break;
-        }
-        case 'j': // SpeedUp
-        {
-            delay = delay * 4 / 5;
-            break;
-        }
-        case 'k': // SpeedDown
-        {
-            delay = delay * 5 / 4;
-            break;
-        }
-        case 27: // ESC
-        {
-            printf("Exit!\n");
-            isPause = 0;
-            direction = -1;
-            pthread_exit(NULL);
-            break;
-        }
-        case ' ': // Space
-        {
-            if (isPause)
+            k = getchar();
+            switch (k)
             {
-                printf("Continue!\n");
-            }
-            else
+            case 'w': // Up
             {
-                printf("Pause!\n");
+                if (direction != 4)
+                    direction = 2;
+                break;
             }
-            isPause = !isPause;
-            break;
-        }
+            case 's': // Down
+            {
+                if (direction != 2)
+                    direction = 4;
+                break;
+            }
+            case 'a': // Left
+            {
+                if (direction != 1)
+                    direction = 3;
+                break;
+            }
+            case 'd': // Right
+            {
+                if (direction != 3)
+                    direction = 1;
+                break;
+            }
+            case 'j': // SpeedUp
+            {
+                delay = delay * 4 / 5;
+                break;
+            }
+            case 'k': // SpeedDown
+            {
+                delay = delay * 5 / 4;
+                break;
+            }
+            case 27: // ESC
+            {
+                printf("Exit!\n");
+                isPause = 0;
+                direction = -1;
+                pthread_exit(NULL);
+                break;
+            }
+            case ' ': // Space
+            {
+                if (isPause)
+                {
+                    printf("Continue!\n");
+                }
+                else
+                {
+                    printf("Pause!\n");
+                }
+                isPause = !isPause;
+                break;
+            }
+            }
         }
     }
 }
@@ -281,7 +288,8 @@ int main()
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
     // set pthread_attr to detached
     pthread_t tid;
-    pthread_create(&tid, &attr, KeyMonitor, NULL); // Create pthread to capture input
+    pthread_create(&tid, &attr, KeyMonitor,
+                   NULL); // Create pthread to capture input
     randomApple();
     while (1)
     {

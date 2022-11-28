@@ -4,13 +4,13 @@
 #include <stdio.h>
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
-#include <windows.h>
 #include <handleapi.h>
 #include <processthreadsapi.h>
+#include <windows.h>
 
 #define KeyMonitor_Starter()                                                   \
     HANDLE hThread1 = CreateThread(NULL, 0, KeyMonitor, NULL, 0, NULL)
-
+#define KeyMonitor_Stoper() CloseHandle(hThread1);
 #elif defined(__linux__) || defined(__gnu_linux__)
 #include <pthread.h>
 #include <unistd.h>
@@ -22,6 +22,7 @@
         pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);           \
         pthread_create(&tid, &attr, KeyMonitor, NULL);                         \
     }
+#define KeyMonitor_Stoper() pthread_join(tid, NULL);
 #elif defined(__APPLE__)
 #endif
 

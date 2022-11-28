@@ -6,4 +6,5 @@ int main()
 {
     KeyMonitor_Starter();
     mapInit();
+    KeyMonitor_Stoper();
 }

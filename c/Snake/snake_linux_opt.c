@@ -23,17 +23,15 @@ int i, j;
 int direction = 1;      // 1.right;2.up;3.left;4.down;-1.exit
 int delay = 200 * 1000; // delay 0.2s(200ms)
 _Bool isPause = 0;
-#define gotoxy(y, x) printf("%c[%d;%df", 0x1B, ((y) + 1), ((x) + 1))
+#define gotoxy(y, x) printf("%c[%ld;%ldf", 0x1B, ((y) + 1), ((x) + 1))
 
 #define moveBody()                                                             \
     {                                                                          \
-        gotoxy((int)(((p[0] - a[0]) / WIDTH) + 2),                             \
-               (int)(2 * ((p[0] - a[0]) % WIDTH)));                            \
+        gotoxy((((p[0] - a[0]) / WIDTH) + 2), (2 * ((p[0] - a[0]) % WIDTH)));  \
         printf("%c", BODY);                                                    \
         /* change p[0] to body*/                                               \
         *p[n] = 0;                                                             \
-        gotoxy((int)(((p[n] - a[0]) / WIDTH) + 2),                             \
-               (int)(2 * ((p[n] - a[0]) % WIDTH)));                            \
+        gotoxy((((p[n] - a[0]) / WIDTH) + 2), (2 * ((p[n] - a[0]) % WIDTH)));  \
         printf("%c", '_');                                                     \
         for (i = n; i > 0; i--)                                                \
         {                                                                      \
@@ -51,8 +49,7 @@ void moveRight()
     /* Move snake head */
     *p[0] = HEAD;
     /* change the char of new head(new address)'s shape to HEAD */
-    gotoxy((int)(((p[0] - a[0]) / WIDTH) + 2),
-           (int)(2 * ((p[0] - a[0]) % WIDTH)));
+    gotoxy((((p[0] - a[0]) / WIDTH) + 2), (2 * ((p[0] - a[0]) % WIDTH)));
     printf("%c", HEAD);
     gotoxy(0, 62);
 }
@@ -61,8 +58,7 @@ void moveLeft()
     moveBody();
     p[0] = p[0] - 1;
     *p[0] = HEAD;
-    gotoxy((int)(((p[0] - a[0]) / WIDTH) + 2),
-           (int)(2 * ((p[0] - a[0]) % WIDTH)));
+    gotoxy((((p[0] - a[0]) / WIDTH) + 2), (2 * ((p[0] - a[0]) % WIDTH)));
     printf("%c", HEAD);
     gotoxy(0, 62);
 }
@@ -71,8 +67,7 @@ void moveDown()
     moveBody();
     p[0] = p[0] + WIDTH;
     *p[0] = HEAD;
-    gotoxy((int)(((p[0] - a[0]) / WIDTH) + 2),
-           (int)(2 * ((p[0] - a[0]) % WIDTH)));
+    gotoxy((((p[0] - a[0]) / WIDTH) + 2), (2 * ((p[0] - a[0]) % WIDTH)));
     printf("%c", HEAD);
     gotoxy(0, 62);
 }
@@ -81,8 +76,7 @@ void moveUp()
     moveBody();
     p[0] = p[0] - WIDTH;
     *p[0] = HEAD;
-    gotoxy((int)(((p[0] - a[0]) / WIDTH) + 2),
-           (int)(2 * ((p[0] - a[0]) % WIDTH)));
+    gotoxy((((p[0] - a[0]) / WIDTH) + 2), (2 * ((p[0] - a[0]) % WIDTH)));
     printf("%c", HEAD);
     gotoxy(0, 62);
 }
@@ -300,6 +294,7 @@ void *KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
         }
         case 27: // ESC
         {
+            gotoxy(27, 0);
             printf("Exit!\n");
             isPause = 0;
             direction = -1;
@@ -310,10 +305,12 @@ void *KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
         {
             if (isPause)
             {
+                gotoxy(27, 0);
                 printf("Continue!\n");
             }
             else
             {
+                gotoxy(27, 0);
                 printf("Pause!\n");
             }
             isPause = !isPause;
@@ -371,9 +368,6 @@ int main()
             else
             {
                 moveUp();
-                gotoxy((int)(((p[n] - a[0]) / WIDTH) + 2),
-                       (int)(2 * ((p[n] - a[0]) % WIDTH)));
-                printf("%c", '_');
                 gotoxy(0, 14);
                 printf("%d", n - 3);
                 gotoxy(0, 62);
@@ -390,9 +384,6 @@ int main()
             else
             {
                 moveLeft();
-                gotoxy((int)(((p[n] - a[0]) / WIDTH) + 2),
-                       (int)(2 * ((p[n] - a[0]) % WIDTH)));
-                printf("%c", '_');
                 gotoxy(0, 14);
                 printf("%d", n - 3);
                 gotoxy(0, 62);
@@ -409,9 +400,6 @@ int main()
             else
             {
                 moveDown();
-                gotoxy((int)(((p[n] - a[0]) / WIDTH) + 2),
-                       (int)(2 * ((p[n] - a[0]) % WIDTH)));
-                printf("%c", '_');
                 gotoxy(0, 14);
                 printf("%d", n - 3);
                 gotoxy(0, 62);
