@@ -25,6 +25,15 @@ int i, j;
 int direction = 1; // 1.right;2.up;3.left;4.down;-1.exit
 int delay = 200;   // delay 0.2s(200ms)
 _Bool isPause = 0;
+// https://cloud.tencent.com/developer/article/1790043?from=15425
+// https://cloud.tencent.com/developer/article/2132941?from=15425
+#define gotoxy(y, x)                                                           \
+    {                                                                          \
+        COORD coord = {(x), (y)}; /* coord */                                  \
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),              \
+                                 coord); /* Move Cursor to coord */            \
+    }
+    
 #define moveBody()                                                             \
     {                                                                          \
         gotoxy(((p[0] - a[0]) / WIDTH) + 2, 2 * ((p[0] - a[0]) % WIDTH));      \
@@ -37,15 +46,6 @@ _Bool isPause = 0;
         }                                                                      \
         *p[0] = BODY;                                                          \
         /* The First part of snake body come to snake head*/                   \
-    }
-
-// https://cloud.tencent.com/developer/article/1790043?from=15425
-// https://cloud.tencent.com/developer/article/2132941?from=15425
-#define gotoxy(y, x)                                                           \
-    {                                                                          \
-        COORD coord = {(x), (y)}; /* coord */                                  \
-        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),              \
-                                 coord); /* Move Cursor to coord */            \
     }
 
 void moveRight()
