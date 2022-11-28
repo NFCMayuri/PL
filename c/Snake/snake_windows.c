@@ -39,7 +39,7 @@ _Bool isPause = 0;
 
 // https://cloud.tencent.com/developer/article/1790043?from=15425
 // https://cloud.tencent.com/developer/article/2132941?from=15425
-#define gotoxy(x, y)                                                           \
+#define gotoxy(y, x)                                                           \
     {                                                                          \
         COORD coord = {(x), (y)}; /* coord */                                  \
         SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),              \

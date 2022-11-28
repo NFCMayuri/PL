@@ -34,7 +34,7 @@ _Bool isPause = 0;
         *p[0] = BODY;                                                          \
         /* The First part of snake body come to snake head*/                   \
     }
-#define gotoxy(x, y) printf("%c[%d;%df", 0x1B, ((y) + 1), ((x) + 1))
+#define gotoxy(y, x) printf("%c[%d;%df", 0x1B, ((y) + 1), ((x) + 1))
 
 void moveRight()
 {
