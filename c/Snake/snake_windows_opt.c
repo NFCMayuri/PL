@@ -60,7 +60,7 @@ void moveRight()
     /* change the char of new head(new address)'s shape to HEAD */
     gotoxy(((p[0] - a[0]) / WIDTH) + 2, 2 * ((p[0] - a[0]) % WIDTH));
     printf("%c", HEAD);
-    gotoxy(0, 62);
+    gotoxy(0, 10000);
 }
 void moveLeft()
 {
@@ -69,7 +69,7 @@ void moveLeft()
     *p[0] = HEAD;
     gotoxy(((p[0] - a[0]) / WIDTH) + 2, 2 * ((p[0] - a[0]) % WIDTH));
     printf("%c", HEAD);
-    gotoxy(0, 62);
+    gotoxy(0, 10000);
 }
 void moveDown()
 {
@@ -78,7 +78,7 @@ void moveDown()
     *p[0] = HEAD;
     gotoxy(((p[0] - a[0]) / WIDTH) + 2, 2 * ((p[0] - a[0]) % WIDTH));
     printf("%c", HEAD);
-    gotoxy(0, 62);
+    gotoxy(0, 10000);
 }
 void moveUp()
 {
@@ -87,7 +87,7 @@ void moveUp()
     *p[0] = HEAD;
     gotoxy(((p[0] - a[0]) / WIDTH) + 2, 2 * ((p[0] - a[0]) % WIDTH));
     printf("%c", HEAD);
-    gotoxy(0, 62);
+    gotoxy(0, 10000);
 }
 
 void show()

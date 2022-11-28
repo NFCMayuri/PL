@@ -306,7 +306,7 @@ int main()
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
             Sleep(delay);
 #elif defined(__linux__) || defined(__gnu_linux__)
-            usleep(delay * 1000);
+            usleep(delay * 1000);   
 #elif defined(__APPLE__)
 #endif
         } while (isPause);
