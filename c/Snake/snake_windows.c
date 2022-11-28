@@ -75,7 +75,7 @@ void show()
 {
     system("clear");
     printf("Your Score is:%d\n", n - 3);
-    for (i = 0; i < WIDTH; i++)
+    for (i = 0; i < WIDTH*2; i++)
         printf("_");
     printf("\n");
     for (i = 0; i < HEIGHT; i++)
@@ -83,13 +83,14 @@ void show()
         // printf("|");
         for (j = 0; j < WIDTH; j++)
         {
-            printf("%c", (a[i][j] == 0) ? ' ' : a[i][j]);
+            if (a[i][j] == 0)
+                printf("_|"); //□■
+            else
+                printf("%c|", a[i][j]);
         }
         // printf("|");
         printf("\n");
     }
-    for (i = 0; i < WIDTH; i++)
-        printf("-");
     printf("\nw,s,a,d->Up Down Left Right;\nj,k->Speed Up/Down;\nESC: Exit\n");
 }
 
