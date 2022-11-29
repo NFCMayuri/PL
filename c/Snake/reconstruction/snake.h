@@ -4,7 +4,7 @@
 #include "GlobalVar.h"
 #include "GotoXY.h"
 #include "KeyMonitor.h"
-#include "MapInit.h"
+#include "ShowMap.h"
 #include "Move.h"
 #include "Random.h"
 #include "Sleep.h"
@@ -20,7 +20,7 @@
 #endif
 
 /* Print String At (x,y) and make Cursor go to another place */
-#define PRINTXY(x, y, content)                                                 \
+#define PRINT_STRING_XY(x, y, content)                                                 \
     {                                                                          \
         gotoxy((x), (y));                                                      \
         printf("%s", (content));                                               \
@@ -38,7 +38,7 @@
             /* if random location is 0 ->*;else find again and again*/         \
         } while (a[i][j] != 0);                                                \
         a[i][j] = '*';                                                         \
-        PRINTXY(((GETX_CHAR((a[0]), (&a[i][j]), (WIDTH))) + 2),                \
+        PRINT_STRING_XY(((GETX_CHAR((a[0]), (&a[i][j]), (WIDTH))) + 2),                \
                 ((GETY_CHAR((a[0]), (&a[i][j]), (WIDTH))) * 2), "*");          \
     }
 

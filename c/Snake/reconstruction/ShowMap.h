@@ -1,7 +1,7 @@
-#ifndef _MAPINIT_H
-#define _MAPINIT_H
+#ifndef _SHWOMAP_H
+#define _SHWOMAP_H
 #include <stdio.h>
-#define mapInit()                                                              \
+#define ShowMap()                                                              \
     {                                                                          \
         system("clear");                                                       \
         printf("Your Score is:\n"); /* (0,13) */                               \

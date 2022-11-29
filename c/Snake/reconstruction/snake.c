@@ -6,14 +6,18 @@
 int main()
 {
     KeyMonitor_Starter();
-    mapInit();
+    ShowMap();
     RandomApple();
+    gotoxy(0, 14);
+    printf("%d", n - 3);
+    gotoxy(HEIGHT + 7, 40);
     while (1)
     {
         do
         {
             SLEEPS(delay);
         } while (isPause);
+
         switch (isFail())
         {
         case 0:
@@ -36,6 +40,10 @@ int main()
         {
             n++; // length++
             p[n] = p[n - 1];
+            gotoxy(0, 14);
+            printf("%d", n - 3);
+            gotoxy(HEIGHT + 7, 40);
+            RandomApple();
         }
 
         switch (direction) // choose which direction to move
@@ -60,6 +68,10 @@ int main()
             moveDown();
             break;
         }
+        }
+        if (direction == -1)
+        {
+            break;
         }
     }
     KeyMonitor_Stoper();
