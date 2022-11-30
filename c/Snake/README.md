@@ -17,3 +17,5 @@
 >replace `${The Dir of pthreads4w}` according to your own setting
 
 3. `snake_windows_opt.c` is the version avoiding refresh all output frequently, which lead to splash screen
+
+#### The code under `clear_versiom` `gotoxy_version` has lots of bugs
