@@ -4,9 +4,9 @@
 #include "GlobalVar.h"
 #include "GotoXY.h"
 #include "KeyMonitor.h"
-#include "ShowMap.h"
 #include "Move.h"
 #include "Random.h"
+#include "ShowMap.h"
 #include "Sleep.h"
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
@@ -20,7 +20,7 @@
 #endif
 
 /* Print String At (x,y) and make Cursor go to another place */
-#define PRINT_STRING_XY(x, y, content)                                                 \
+#define PRINT_STRING_XY(x, y, content)                                         \
     {                                                                          \
         gotoxy((x), (y));                                                      \
         printf("%s", (content));                                               \
@@ -38,8 +38,11 @@
             /* if random location is 0 ->*;else find again and again*/         \
         } while (a[i][j] != 0);                                                \
         a[i][j] = '*';                                                         \
-        PRINT_STRING_XY(((GETX_CHAR((a[0]), (&a[i][j]), (WIDTH))) + 2),                \
-                ((GETY_CHAR((a[0]), (&a[i][j]), (WIDTH))) * 2), "*");          \
+        PRINT_STRING_XY(((GETX_CHAR((a[0]), (&a[i][j]), (WIDTH))) + 2),        \
+                        ((GETY_CHAR((a[0]), (&a[i][j]), (WIDTH))) * 2), "*");  \
+        gotoxy(0, 62);                                                         \
+        printf("Food is at (%02d,%02d)", i, j);                                \
+        gotoxy(HEIGHT + 7, 40);                                                \
     }
 
 // exec when(before) moving

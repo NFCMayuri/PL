@@ -20,11 +20,11 @@
 
 // char HEAD = '@'; // The shape of snake head
 // char BODY = 'O'; // The shape of snake body
-#define HEAD '@'                           // The shape of snake head
-#define BODY 'O'                           // The shape of snake body
+#define HEAD '@'                                    // The shape of snake head
+#define BODY 'O'                                    // The shape of snake body
 char a[HEIGHT][WIDTH] = {{BODY, BODY, BODY, HEAD}}; // The initial char is 0
 char *p[HEIGHT * WIDTH] = {&a[0][3], &a[0][2], &a[0][1],
-                  &a[0][0]}; // p[0] stand for snake head
+                           &a[0][0]}; // p[0] stand for snake head
 
 int n = 3; // The length of snake body (without head)
 int i, j;
@@ -295,7 +295,8 @@ int main()
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
     // set pthread_attr to detached
     pthread_t tid;
-    pthread_create(&tid, &attr, KeyMonitor, NULL); // Create pthread to capture input
+    pthread_create(&tid, &attr, KeyMonitor,
+                   NULL); // Create pthread to capture input
     randomApple();
     while (1)
     {
@@ -305,7 +306,7 @@ int main()
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
             Sleep(delay);
 #elif defined(__linux__) || defined(__gnu_linux__)
-            usleep(delay * 1000);   
+            usleep(delay * 1000);
 #elif defined(__APPLE__)
 #endif
         } while (isPause);
