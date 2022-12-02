@@ -3,10 +3,10 @@
 #include "GlobalVar.h"
 #include <stdio.h>
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
+#include <windows.h>
 #include <conio.h>
 #include <handleapi.h>
 #include <processthreadsapi.h>
-#include <windows.h>
 
 #define KeyMonitor_Starter()                                                   \
     HANDLE hThread1 = CreateThread(NULL, 0, KeyMonitor, NULL, 0, NULL)

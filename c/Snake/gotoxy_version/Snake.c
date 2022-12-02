@@ -24,8 +24,7 @@ int main()
             break;
         case 1:
             gotoxy(HEIGHT + 7, 0);
-            printf("Fail!Don't eat your body!\nYour Final Score is:%d\n",
-                   n - 3);
+            printf("Fail!Don't hit the wall!\nYour Final Score is:%d\n", n - 3);
             return -1;
             break;
         case 2:

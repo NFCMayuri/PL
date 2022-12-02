@@ -1,7 +1,7 @@
 #ifndef _SHWOMAP_H
 #define _SHWOMAP_H
-#include <stdio.h>
 #include "GlobalVar.h"
+#include <stdio.h>
 #define ShowMap()                                                              \
     {                                                                          \
         system("clear");                                                       \

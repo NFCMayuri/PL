@@ -21,8 +21,7 @@ int main()
         case 0:
             break;
         case 1:
-            printf("Fail!Don't eat your body!\nYour Final Score is:%d\n",
-                   n - 3);
+            printf("Fail!Don't hit the wall!\nYour Final Score is:%d\n", n - 3);
             return -1;
             break;
         case 2:

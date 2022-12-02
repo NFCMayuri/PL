@@ -6,10 +6,10 @@
 #include "ShowMap.h"
 #include "Sleep.h"
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
+#include <windows.h>
 #include <conio.h>
 #include <handleapi.h>
 #include <processthreadsapi.h>
-#include <windows.h>
 #elif defined(__linux__) || defined(__gnu_linux__)
 #include <pthread.h>
 #elif defined(__APPLE__)
@@ -78,7 +78,6 @@ int isFail()
     if (p[0] < &a[0][0] ||
         p[0] > &a[HEIGHT - 1][WIDTH - 1]) // snake is not in the matrix
     {
-        // gotoxy(27, 0);
         // printf("Fail!\nDon't hit the wall!\n");
         direction = -1;
         return 1;
@@ -94,7 +93,6 @@ int isFail()
                 {
                     if ((p[0] + 1) == p[i]) // Right of the head is body
                     {
-                        // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
                         direction = -1;
                         return 2;
@@ -110,7 +108,6 @@ int isFail()
                 {
                     if ((p[0] - WIDTH) == p[i]) // Up of the head is body
                     {
-                        // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
                         direction = -1;
                         return 2;
@@ -126,7 +123,6 @@ int isFail()
                 {
                     if ((p[0] - 1) == p[i]) // Left of the head is body
                     {
-                        // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
                         direction = -1;
                         return 2;
