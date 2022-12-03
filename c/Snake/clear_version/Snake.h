@@ -6,10 +6,10 @@
 #include "ShowMap.h"
 #include "Sleep.h"
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
-#include <windows.h>
 #include <conio.h>
 #include <handleapi.h>
 #include <processthreadsapi.h>
+#include <windows.h>
 #elif defined(__linux__) || defined(__gnu_linux__)
 #include <pthread.h>
 #elif defined(__APPLE__)
@@ -53,7 +53,7 @@ _Bool canEat()
         break;
     }
     // Left
-    case 3: {
+    case -1: {
         if (*(p[0] - 1) == '*')
         {
             return 1;
@@ -61,7 +61,7 @@ _Bool canEat()
         break;
     }
     // Down
-    case 4: {
+    case -2: {
         if (*(p[0] + WIDTH) == '*')
         {
             return 1;
@@ -79,7 +79,7 @@ int isFail()
         p[0] > &a[HEIGHT - 1][WIDTH - 1]) // snake is not in the matrix
     {
         // printf("Fail!\nDon't hit the wall!\n");
-        direction = -1;
+        direction = 0;
         return 1;
     }
     else
@@ -94,7 +94,7 @@ int isFail()
                     if ((p[0] + 1) == p[i]) // Right of the head is body
                     {
                         // printf("Fail!\nDon't eat your body!\n");
-                        direction = -1;
+                        direction = 0;
                         return 2;
                     }
                 }
@@ -109,7 +109,7 @@ int isFail()
                     if ((p[0] - WIDTH) == p[i]) // Up of the head is body
                     {
                         // printf("Fail!\nDon't eat your body!\n");
-                        direction = -1;
+                        direction = 0;
                         return 2;
                     }
                 }
@@ -117,14 +117,14 @@ int isFail()
             }
         }
         // Left
-        case 3: {
+        case -1: {
             {
                 for (i = n; i > 0; i--)
                 {
                     if ((p[0] - 1) == p[i]) // Left of the head is body
                     {
                         // printf("Fail!\nDon't eat your body!\n");
-                        direction = -1;
+                        direction = 0;
                         return 2;
                     }
                 }
@@ -132,14 +132,14 @@ int isFail()
             }
         }
         // Down
-        case 4: {
+        case -2: {
             {
                 for (i = n; i > 0; i--)
                 {
                     if ((p[0] + WIDTH) == p[i]) // Down of the head is body
                     {
                         // printf("Fail!\nDon't eat your body!\n");
-                        direction = -1;
+                        direction = 0;
                         return 2;
                     }
                 }
@@ -150,3 +150,8 @@ int isFail()
     }
     return 0;
 }
+#define CheckInput()                                                           \
+    if (direction != -directiontemp)                                           \
+    {                                                                          \
+        directiontemp = direction;                                             \
+    }

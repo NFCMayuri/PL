@@ -47,26 +47,22 @@ KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
         {
         case 'w': // Up
         {
-            if (direction != 4)
-                direction = 2;
+            direction = 2;
             break;
         }
         case 's': // Down
         {
-            if (direction != 2)
-                direction = 4;
+            direction = -2;
             break;
         }
         case 'a': // Left
         {
-            if (direction != 1)
-                direction = 3;
+            direction = -1;
             break;
         }
         case 'd': // Right
         {
-            if (direction != 3)
-                direction = 1;
+            direction = 1;
             break;
         }
         case 'j': // SpeedUp
@@ -83,7 +79,7 @@ KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
         {
             printf("Exit!\n");
             isPause = 0;
-            direction = -1;
+            direction = 0;
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
             return 0;
 #elif defined(__linux__) || defined(__gnu_linux__)

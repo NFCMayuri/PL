@@ -67,7 +67,7 @@ _Bool canEat()
         break;
     }
     // Left
-    case 3: {
+    case -1: {
         if (*(p[0] - 1) == '*')
         {
             return 1;
@@ -75,7 +75,7 @@ _Bool canEat()
         break;
     }
     // Down
-    case 4: {
+    case -2: {
         if (*(p[0] + WIDTH) == '*')
         {
             return 1;
@@ -94,7 +94,7 @@ int isFail()
     {
         // gotoxy(27, 0);
         // printf("Fail!\nDon't hit the wall!\n");
-        direction = -1;
+        direction = 0;
         return 1;
     }
     else
@@ -110,7 +110,7 @@ int isFail()
                     {
                         // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
-                        direction = -1;
+                        direction = 0;
                         return 2;
                     }
                 }
@@ -126,7 +126,7 @@ int isFail()
                     {
                         // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
-                        direction = -1;
+                        direction = 0;
                         return 2;
                     }
                 }
@@ -134,7 +134,7 @@ int isFail()
             }
         }
         // Left
-        case 3: {
+        case -1: {
             {
                 for (i = n; i > 0; i--)
                 {
@@ -142,7 +142,7 @@ int isFail()
                     {
                         // gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
-                        direction = -1;
+                        direction = 0;
                         return 2;
                     }
                 }
@@ -150,7 +150,7 @@ int isFail()
             }
         }
         // Down
-        case 4: {
+        case -2: {
             {
                 for (i = n; i > 0; i--)
                 {
@@ -158,7 +158,7 @@ int isFail()
                     {
                         gotoxy(27, 0);
                         // printf("Fail!\nDon't eat your body!\n");
-                        direction = -1;
+                        direction = 0;
                         return 2;
                     }
                 }
@@ -169,3 +169,9 @@ int isFail()
     }
     return 0;
 }
+
+#define CheckInput()                                                           \
+    if (direction != -directiontemp)                                           \
+    {                                                                          \
+        directiontemp = direction;                                             \
+    }

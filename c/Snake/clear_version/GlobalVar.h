@@ -7,9 +7,9 @@
 
 // char HEAD = '@'; // The shape of snake head
 // char BODY = 'O'; // The shape of snake body
-#define HEAD '@'                                    // The shape of snake head
+#define HEAD '@' // The shape of snake head
 #define HEAD_STRING "@"
-#define BODY 'O'                                    // The shape of snake body
+#define BODY 'O' // The shape of snake body
 #define BODY_STRING "O"
 char a[HEIGHT][WIDTH] = {{BODY, BODY, BODY, HEAD}}; // The initial char is 0
 char *p[HEIGHT * WIDTH] = {&a[0][3], &a[0][2], &a[0][1],
@@ -17,7 +17,8 @@ char *p[HEIGHT * WIDTH] = {&a[0][3], &a[0][2], &a[0][1],
 
 int n = 3; // The length of snake body (without head)
 int i, j;
-int direction = 1;      // 1.right;2.up;3.left;4.down;-1.exit
-int delay = 200; // delay 0.2s(200ms)
+char direction = 1;     // 1.Right;2.Up;-1.Left;-2.Down;0.Exit
+char directiontemp = 1; // 1.Right;2.Up;-1.Left;-2.Down;0.Exit
+int delay = 200;        // delay 0.2s(200ms)
 bool isPause = 0;
 #endif

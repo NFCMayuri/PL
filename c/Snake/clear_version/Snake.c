@@ -15,7 +15,7 @@ int main()
         {
             SLEEPS(delay);
         } while (isPause);
-
+        CheckInput();
         switch (isFail())
         {
         case 0:
@@ -50,18 +50,18 @@ int main()
             moveUp();
             break;
         }
-        case 3: // Left
+        case -1: // Left
         {
             moveLeft();
             break;
         }
-        case 4: // Down
+        case -2: // Down
         {
             moveDown();
             break;
         }
         }
-        if (direction == -1)
+        if (direction == 0)
         {
             break;
         }
