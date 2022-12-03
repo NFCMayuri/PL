@@ -78,7 +78,6 @@ int isFail()
     if (p[0] < &a[0][0] ||
         p[0] > &a[HEIGHT - 1][WIDTH - 1]) // snake is not in the matrix
     {
-        // printf("Fail!\nDon't hit the wall!\n");
         direction = 0;
         return 1;
     }
@@ -93,7 +92,6 @@ int isFail()
                 {
                     if ((p[0] + 1) == p[i]) // Right of the head is body
                     {
-                        // printf("Fail!\nDon't eat your body!\n");
                         direction = 0;
                         return 2;
                     }
@@ -108,7 +106,6 @@ int isFail()
                 {
                     if ((p[0] - WIDTH) == p[i]) // Up of the head is body
                     {
-                        // printf("Fail!\nDon't eat your body!\n");
                         direction = 0;
                         return 2;
                     }
@@ -123,7 +120,6 @@ int isFail()
                 {
                     if ((p[0] - 1) == p[i]) // Left of the head is body
                     {
-                        // printf("Fail!\nDon't eat your body!\n");
                         direction = 0;
                         return 2;
                     }
@@ -138,7 +134,6 @@ int isFail()
                 {
                     if ((p[0] + WIDTH) == p[i]) // Down of the head is body
                     {
-                        // printf("Fail!\nDon't eat your body!\n");
                         direction = 0;
                         return 2;
                     }
@@ -153,5 +148,5 @@ int isFail()
 #define CheckInput()                                                           \
     if (direction != -directiontemp)                                           \
     {                                                                          \
-        directiontemp = direction;                                             \
+        direction = directiontemp;                                             \
     }

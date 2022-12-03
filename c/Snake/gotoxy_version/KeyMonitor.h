@@ -3,10 +3,10 @@
 #include "GlobalVar.h"
 #include <stdio.h>
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
-#include <windows.h>
 #include <conio.h>
 #include <handleapi.h>
 #include <processthreadsapi.h>
+#include <windows.h>
 
 #define KeyMonitor_Starter()                                                   \
     HANDLE hThread1 = CreateThread(NULL, 0, KeyMonitor, NULL, 0, NULL)
@@ -47,22 +47,22 @@ KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
         {
         case 'w': // Up
         {
-            direction = 2;
+            directiontemp = 2;
             break;
         }
         case 's': // Down
         {
-            direction = -2;
+            directiontemp = -2;
             break;
         }
         case 'a': // Left
         {
-            direction = -1;
+            directiontemp = -1;
             break;
         }
         case 'd': // Right
         {
-            direction = 1;
+            directiontemp = 1;
             break;
         }
         case 'j': // SpeedUp
@@ -80,6 +80,7 @@ KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
             printf("Exit!\n");
             isPause = 0;
             direction = 0;
+            directiontemp = 0;
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
             return 0;
 #elif defined(__linux__) || defined(__gnu_linux__)
