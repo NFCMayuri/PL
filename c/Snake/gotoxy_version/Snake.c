@@ -1,6 +1,4 @@
 #include "Snake.h"
-#include "GlobalVar.h"
-#include "Sleep.h"
 #include <stdio.h>
 #include <stdlib.h>
 int main()

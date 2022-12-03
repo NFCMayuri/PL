@@ -1,5 +1,6 @@
 #ifndef _SNAKE_H
 #define _SNAKE_H
+#include "Clear.h"
 #include "GlobalVar.h"
 #include "KeyMonitor.h"
 #include "Move.h"

@@ -1,5 +1,6 @@
 #ifndef _SNAKE_H
 #define _SNAKE_H
+#include "Clear.h"
 #include "GetXYFromArrays.h"
 #include "GlobalVar.h"
 #include "GotoXY.h"
