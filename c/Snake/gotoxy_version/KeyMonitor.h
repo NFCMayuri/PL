@@ -77,7 +77,7 @@ KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
         }
         case 27: // ESC
         {
-            printf("Exit!\n");
+            printf("\nExit!\n");
             isPause = 0;
             direction = 0;
             directiontemp = 0;
@@ -93,11 +93,11 @@ KeyMonitor(void *arg) // Direction Control：w,s,a,d-->Up Down Left Right
         {
             if (isPause)
             {
-                printf("Continue!\n");
+                printf("\nContinue!\n");
             }
             else
             {
-                printf("Pause!\n");
+                printf("\nPause!\n");
             }
             isPause = !isPause;
             break;

@@ -14,5 +14,6 @@ int main()
     printf("asdfdsasdf");
     gotoxy(8, 9);
     printf("00");
+    printf("\033c");
     return 0;
 }

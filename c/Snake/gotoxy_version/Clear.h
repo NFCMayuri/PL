@@ -2,9 +2,9 @@
 #define _CLEAR_H
 
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
-#define Clear() system("cls")
+#define Clear() printf("\033c");
 #elif defined(__linux__) || defined(__gnu_linux__)
-#define Clear() system("clear")
+#define Clear() printf("\033c");
 #elif defined(__APPLE__)
 #endif
 

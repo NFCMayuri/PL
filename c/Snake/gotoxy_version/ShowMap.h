@@ -1,9 +1,11 @@
 #ifndef _SHWOMAP_H
 #define _SHWOMAP_H
+#include "Clear.h"
+#include "GlobalVar.h"
 #include <stdio.h>
 #define ShowMap()                                                              \
     {                                                                          \
-        system("clear");                                                       \
+        Clear();                                                               \
         printf("Your Score is:\n"); /* (0,13) */                               \
         for (i = 0; i < (WIDTH)*2; i++)                                        \
             printf("_");                                                       \
