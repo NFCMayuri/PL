@@ -21,4 +21,4 @@ char direction = 1;     // 1.Right;2.Up;-1.Left;-2.Down;0.Exit
 char directiontemp = 1; // 1.Right;2.Up;-1.Left;-2.Down;0.Exit
 int delay = 200;        // delay 0.2s(200ms)
 bool isPause = 0;
-#endif
+#endif /* _GLOBALVAR_H */

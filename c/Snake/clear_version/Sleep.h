@@ -12,4 +12,4 @@
 #define SLEEPS(delay) usleep((delay)*1000)
 #elif defined(__APPLE__)
 #endif
-#endif
+#endif /* _SLEEP_H */

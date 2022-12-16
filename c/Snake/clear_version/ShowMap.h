@@ -25,4 +25,4 @@
                "Up/Down;\nESC: Exit\n");                                       \
     }
 
-#endif
+#endif /* _SHWOMAP_H */

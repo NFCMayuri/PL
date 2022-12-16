@@ -1,5 +1,6 @@
 #ifndef _GOTOXY_H
 #define _GOTOXY_H
+
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #define gotoxy(y, x)                                                           \
     {                                                                          \
@@ -11,4 +12,5 @@
 #define gotoxy(y, x) printf("%c[%d;%df", 0x1B, ((y) + 1), ((x) + 1))
 #elif defined(__APPLE__)
 #endif
-#endif
+
+#endif /* _GOTOXY_H */

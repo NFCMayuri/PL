@@ -5,4 +5,4 @@
     ((ElementCoordinate) - (CoordinateOrigin)) / (Column)
 #define GETY_CHAR(CoordinateOrigin, ElementCoordinate, Column)                 \
     ((ElementCoordinate) - (CoordinateOrigin)) % (Column)
-#endif
+#endif /* _GETXYFROMARRAYS_H */

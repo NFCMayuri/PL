@@ -8,4 +8,4 @@
 #elif defined(__APPLE__)
 #endif
 
-#endif
+#endif /* _CLEAR_H */

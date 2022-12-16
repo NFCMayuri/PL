@@ -38,4 +38,4 @@
         p[0] = p[0] - WIDTH;                                                   \
         *p[0] = HEAD;                                                          \
     }
-#endif
+#endif /* _MOVE_H */

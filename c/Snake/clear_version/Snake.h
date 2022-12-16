@@ -15,7 +15,6 @@
 #include <pthread.h>
 #elif defined(__APPLE__)
 #endif
-#endif
 
 /* Print String At (x,y) and make Cursor go to another place */
 
@@ -151,3 +150,5 @@ int isFail()
     {                                                                          \
         direction = directiontemp;                                             \
     }
+
+#endif /* _SNAKE_H */

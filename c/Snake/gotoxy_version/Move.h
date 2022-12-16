@@ -52,4 +52,4 @@
         PRINT_STRING_XY((GETX_CHAR(a[0], p[0], WIDTH) + 2),                    \
                         (GETY_CHAR(a[0], p[0], WIDTH) * 2), HEAD_STRING)       \
     }
-#endif
+#endif /* _MOVE_H */
