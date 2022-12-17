@@ -19,17 +19,17 @@
 /* Print String At (x,y) and make Cursor go to another place */
 
 /* Random Food */
-#define RandomApple()                                                          \
-    {                                                                          \
-        srand(time(NULL));                                                     \
-        do                                                                     \
-        {                                                                      \
-            i = rand() % HEIGHT;                                               \
-            j = rand() % WIDTH;                                                \
-            /* if random location is 0 ->*;else find again and again*/         \
-        } while (a[i][j] != 0);                                                \
-        a[i][j] = '*';                                                         \
-    }
+inline void RandomApple()
+{
+    srand(time(NULL));
+    do
+    {
+        i = rand() % HEIGHT;
+        j = rand() %
+            WIDTH; /* if random location is 0 ->*;else find again and again*/
+    } while (a[i][j] != 0);
+    a[i][j] = '*';
+}
 
 // exec when(before) moving
 _Bool canEat()
@@ -145,10 +145,14 @@ int isFail()
     }
     return 0;
 }
-#define CheckInput()                                                           \
-    if (direction != -directiontemp)                                           \
-    {                                                                          \
-        direction = directiontemp;                                             \
+inline void CheckInput()
+{
+    if (direction != -directiontemp)
+    {
+        direction = directiontemp;
     }
+}
 
 #endif /* _SNAKE_H */
+void RandomApple();
+void CheckInput();
