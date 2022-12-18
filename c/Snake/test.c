@@ -7,6 +7,13 @@ inline void HELLO()
     PRINT("HELLO WORLD%s", " c");
 }
 void HELLO();
+enum Example : unsigned char
+{
+    A,
+    B,
+    C
+};
+enum Example test = A;
 int main()
 {
     HELLO();
