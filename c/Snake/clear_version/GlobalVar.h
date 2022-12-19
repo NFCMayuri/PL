@@ -11,7 +11,7 @@
 #define HEAD_STRING "@"
 #define BODY 'O' // The shape of snake body
 #define BODY_STRING "O"
-char a[HEIGHT][WIDTH] = {{BODY, BODY, BODY, HEAD}}; // The initial char is 0
+char a[HEIGHT + 1][WIDTH] = {{BODY, BODY, BODY, HEAD}}; // The initial char is 0
 char *p[HEIGHT * WIDTH] = {&a[0][3], &a[0][2], &a[0][1],
                            &a[0][0]}; // p[0] stand for snake head
 
