@@ -1,10 +1,8 @@
 fn main() {
-    let s1 = String::from("Hello world"); 
-
-    let s2 = takes_ownership(s1); 
-    println!("{}", s1); 
-    println!("{}", s2); 
+    let mut s1 = String::from("hello");
+    let s2 = &mut s1;
+    borrow_from_string(&mut s1);
 }
-fn takes_ownership(s: String) -> String {
-  s
+fn borrow_from_string(s: &mut String) -> u32 {
+    0
 }
