@@ -11,7 +11,7 @@ if ($_POST["id"] == "" || $_POST["name"] == "" || ($_POST["sex"] != "male" && $_
     $conn = mysqli_connect($db_host, $db_username, $db_password);
     mysqli_select_db($conn, $db_name);
     $sql = "UPDATE `" . $table_name . "` SET `name`=\"" . addslashes($_POST["name"]) . "\", `sex`=\"" . $_POST["sex"] . "\", `class`=\"" . $_POST["class"] . "\" WHERE `id`=" . $_POST["id"] . ";";
-    // echo $sql;
+    // echo $sql . "<br>";
     $result = mysqli_multi_query($conn, $sql);
     if (!$result) {
         echo "ERROR:" . mysqli_error($conn);

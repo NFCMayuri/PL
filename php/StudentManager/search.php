@@ -23,7 +23,7 @@ if ($_POST["id"] == "" && $_POST["name"] == "" && $_POST["sex"] == "" && $_POST[
         $sql .= " and `class`=\"" . $_POST["class"] . "\"";
     }
     $sql .= ";";
-    // echo $sql;
+    // echo $sql . "<br>";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
         die("ERROR:" . mysqli_error($conn));

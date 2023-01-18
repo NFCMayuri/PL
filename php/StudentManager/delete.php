@@ -7,6 +7,7 @@ $table_name = "user";
 $conn = mysqli_connect($db_host, $db_username, $db_password);
 mysqli_select_db($conn, $db_name);
 $sql = "DELETE from " . $table_name . " WHERE id = " . $_GET["id"] . ";";
+// echo $sql . "<br>";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     echo "ERROR:" . mysqli_error($conn);
