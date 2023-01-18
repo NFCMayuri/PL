@@ -14,7 +14,7 @@
         姓名: <input type="text" name="name" value="<?php echo $_GET['name']; ?>"><br>
         性别: <input type="radio" name="sex" value="male" <?php echo ($_GET['sex'] == 'male') ? 'checked=true' : '' ?>>男
         <input type="radio" name="sex" value="female" <?php echo ($_GET['sex'] == 'female') ? 'checked=true' : '' ?>>女<br>
-        班级: <input type="text" name="name" value="<?php echo $_GET['class']; ?>"><br>
+        班级: <input type="text" name="class" value="<?php echo $_GET['class']; ?>"><br>
         <input type="submit">
     </form>
 </body>
