@@ -1,7 +1,7 @@
 <?php
 if ($_POST["id"] == "" || $_POST["name"] == "" || ($_POST["sex"] != "male" && $_POST["sex"] != "female") || $_POST["class"] == "") {
     echo "请正确填写完整！";
-    header("Refresh:2;url=index.php");
+    header("Refresh:2;url=../index.php");
 } else {
     $db_host = "localhost";
     $db_username = "root";
@@ -20,6 +20,6 @@ if ($_POST["id"] == "" || $_POST["name"] == "" || ($_POST["sex"] != "male" && $_
 
     }
 }
-header("Refresh:2;url=index.php");
+header("Refresh:2;url=../index.php");
 
 ?>

@@ -1,6 +1,7 @@
 <?php
 if ($_POST["id"] == "" && $_POST["name"] == "" && $_POST["sex"] == "" && $_POST["class"] == "") {
     echo "请至少填写一个！";
+    header("Refresh:2;url=../index.php");
 } else {
     $db_host = "localhost";
     $db_username = "root";
@@ -44,8 +45,8 @@ if ($_POST["id"] == "" && $_POST["name"] == "" && $_POST["sex"] == "" && $_POST[
         echo $item["class"];
         echo "</td>";
         echo "<td>";
-        echo "<button> <a href=\"delete.php?id=" . $item["id"] . "\">删除</a></button>";
-        echo "<button> <a href=\"modify_ui.php?id=" . $item["id"] . "&&sex=" . $item["sex"] . "&&name=" . $item["name"] . "&&class=" . $item["class"] . "\">修改</a></button>";
+        echo "<button> <a href=\"tools/delete.php?id=" . $item["id"] . "\">删除</a></button>";
+        echo "<button> <a href=\"tools/modify_ui.php?id=" . $item["id"] . "&&sex=" . $item["sex"] . "&&name=" . $item["name"] . "&&class=" . $item["class"] . "\">修改</a></button>";
         echo "</td>";
         echo "</tr>";
     }

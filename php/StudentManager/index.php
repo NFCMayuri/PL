@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>主页</title>
 </head>
 
 <body>
-    <form action="add_ui.php" method="get">
+    <form action="tools/add_ui.php" method="get">
         <input type="submit" value="添加">
     </form>
-    <form action="search.php" method="post">
+    <form action="tools/search.php" method="post">
         <input type="text" name="id" placeholder="请输入id">
         <input type="text" name="name" placeholder="请输入姓名">
         <input type="text" name="sex" placeholder="请输入性别">
@@ -60,8 +60,8 @@
             echo $item["class"];
             echo "</td>";
             echo "<td>";
-            echo "<button> <a href=\"delete.php?id=" . $item["id"] . "\">删除</a></button>";
-            echo "<button> <a href=\"modify_ui.php?id=" . $item["id"] . "&&sex=" . $item["sex"] . "&&name=" . $item["name"] . "&&class=" . $item["class"] . "\">修改</a></button>";
+            echo "<button> <a href=\"tools/delete.php?id=" . $item["id"] . "\">删除</a></button>";
+            echo "<button> <a href=\"tools/modify_ui.php?id=" . $item["id"] . "&&sex=" . $item["sex"] . "&&name=" . $item["name"] . "&&class=" . $item["class"] . "\">修改</a></button>";
             echo "</td>";
             echo "</tr>";
         }

@@ -4,4 +4,8 @@ CREATE TABLE IF NOT EXISTS `user` (
     `sex` varchar(255),
     `class` int,
     PRIMARY KEY(id)
-)
+);
+CREATE TABLE IF NOT EXISTS `account` (
+    `username` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL
+);

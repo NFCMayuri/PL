@@ -17,6 +17,6 @@ if ($_POST["name"] == "" || ($_POST["sex"] != "male" && $_POST["sex"] != "female
     } else {
         echo "添加成功";
     }
-    header("Refresh:2;url=index.php");
+    header("Refresh:2;url=../index.php");
 }
 ?>

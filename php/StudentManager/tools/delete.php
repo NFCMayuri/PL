@@ -15,6 +15,6 @@ if (!$result) {
     echo "删除成功";
 
 }
-header("Refresh:2;url=index.php");
+header("Refresh:2;url=../index.php");
 
 ?>
