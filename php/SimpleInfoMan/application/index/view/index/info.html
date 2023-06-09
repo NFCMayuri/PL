@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../public/static/css/materialize.css">
+    <link rel="stylesheet" href="../../../../public/static/css/icon.css">
+    <link rel="stylesheet" href="../../../../public/static/css/style.css">
+    <script src="../../../../public/static/js/jquery.main.js"></script>
+    <script src="../../../../public/static/js/materialize.js"></script>
+    <title>查询</title>
+</head>
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: 500;
+    }
+
+    tr:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    .delete-btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: #e91e63;
+    }
+
+    .delete-btn:hover {
+        color: #c2185b;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 20px;
+        }
+    }
+</style>
+
+<body onload="ListData()">
+    <div class="container">
+        <form id="insertDB" action="info.html?action=insert" method="post">
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="name" name="name" type="text" class="validate" required>
+                <label for="name">name</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="age" name="age" type="text" class="validate" required>
+                <label for="age">age</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="gender" name="gender" type="text" class="validate" required>
+                <label for="gender">gender</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="birthday" name="birthday" type="text" class="validate" required>
+                <label for="birthday">birthday</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="club" name="club" type="text" class="validate" required>
+                <label for="club">club</label>
+            </div>
+            <button class="waves-effect waves-light btn" type="submit">增加</button>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <form id="updateDB" action="info.html" method="get">
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="id" name="id" type="text" class="validate" required>
+                <label for="id">id</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="name" name="name" type="text" class="validate">
+                <label for="name">name</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="age" name="age" type="text" class="validate">
+                <label for="age">age</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="gender" name="gender" type="text" class="validate">
+                <label for="gender">gender</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="birthday" name="birthday" type="text" class="validate">
+                <label for="birthday">birthday</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="club" name="club" type="text" class="validate">
+                <label for="club">club</label>
+            </div>
+            <button class="waves-effect waves-light btn" type="submit">修改</button>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <form id="selectDB" action="info.html" method="get">
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="id" name="id" type="text" class="validate">
+                <label for="id">id</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="name" name="name" type="text" class="validate">
+                <label for="name">name</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="age" name="age" type="text" class="validate">
+                <label for="age">age</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="gender" name="gender" type="text" class="validate">
+                <label for="gender">gender</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="birthday" name="birthday" type="text" class="validate">
+                <label for="birthday">birthday</label>
+            </div>
+            <div class="input-field inline" style="max-width: 13%;">
+                <input id="club" name="club" type="text" class="validate">
+                <label for="club">club</label>
+            </div>
+            <button class="waves-effect waves-light btn" type="submit">查询</button>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Birthday</th>
+                    <th>Club</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="result"></tbody>
+        </table>
+    </div>
+
+    <script>
+        function insertDB(Data) {
+            $.ajax({
+                url: "../../index/tools/insertDB",
+                method: "post",
+                data: Data,
+                success(res) {
+                },
+                error(res) {
+                    alert("error");
+                },
+            })
+        }
+
+        function deleteDB(id) {
+            $.ajax({
+                url: "../../index/tools/deleteDB",
+                method: "post",
+                data: {
+                    id: id,
+                },
+                success(res) {
+                    switch (res.code) {
+                        case 1: {
+                            $("#" + id).remove();
+                            break;
+                        };
+                        case 0: {
+                            alert("error");
+                            break;
+                        }
+                    }
+                },
+                error(res) { }
+            })
+        }
+
+        function updateDB(Data) {
+            $.ajax({
+                url: "../../index/tools/updateDB",
+                method: "post",
+                data: Data,
+                success(res) {
+                },
+                error(res) {
+                    alert("error");
+                },
+            })
+        }
+
+        function ListData(Data) {
+            $.ajax({
+                url: "../../index/tools/selectDB",
+                method: "post",
+                data: Data,
+                success(res) {
+                    $(".result").empty()
+                    if (res.code && res.data.length > 0)
+                        for (let i = 0; i < res.data.length; i++) {
+                            $(".result").append(`<tr id="${res.data[i].id}">\
+                                <td>${res.data[i].id || "暂无"}</td>\
+                                <td>${res.data[i].name || "暂无"}</td>\
+                                <td>${res.data[i].age || "暂无"}</td>\
+                                <td>${res.data[i].gender || "暂无"}</td>\
+                                <td>${res.data[i].birthday || "暂无"}</td>\
+                                <td>${res.data[i].club || "暂无"}</td>\
+                                <td><button onclick="deleteDB(${res.data[i].id})" class="delete-btn"><span class="mdi mdi-delete">删除</span></button></td>\
+                            </tr>`);
+                        }
+
+                },
+                error(res) {
+                    $(".result").empty()
+                    alert("error");
+                },
+            })
+        }
+
+        $(function () {
+
+            $('#insertDB').on('submit', function (event) {
+                event.preventDefault(); // 阻止默认行为
+                var form = $(this);
+                var data = form.serializeArray().filter(item => item.value);
+                insertDB(data);
+                ListData();
+                console.table(data);
+            });
+            $('#updateDB').on('submit', function (event) {
+                event.preventDefault(); // 阻止默认行为
+                var form = $(this);
+                var data = form.serializeArray().filter(item => item.value);
+                updateDB(data);
+                ListData();
+                console.table(data);
+            });
+            $('#selectDB').on('submit', function (event) {
+                event.preventDefault(); // 阻止默认行为
+                var form = $(this);
+                var data = form.serializeArray().filter(item => item.value);
+                ListData(data);
+                console.table(data);
+            });
+
+        });
+
+        // function Init() {
+        //     const queryString = window.location.search;
+        //     const urlParams = new URLSearchParams(queryString);
+        //     let Data = {
+        //         id: urlParams.get('id'),
+        //         name: urlParams.get('name'),
+        //         age: urlParams.get('age'),
+        //         gender: urlParams.get('gender'),
+        //         birthday: urlParams.get('birthday'),
+        //         club: urlParams.get('club')
+        //     };
+
+        //     for (let prop in Data) {
+        //         if (!Data[prop]) {
+        //             delete Data[prop];
+        //         }
+        //     }
+        //     console.table(Data);
+        //     let temp = urlParams.get("action");
+        //     let action = temp ? temp : "query"
+        //     switch (action) {
+        //         case "query": {
+        //             ListData(Data); break;
+
+        //         }
+        //         case "insert": {
+        //             insertDB(Data); ListData(); break;
+        //         }
+        //         case "update": {
+        //             updateDB(Data); ListData(); break;
+        //         }
+        //     }
+        // }
+
+
+
+    </script>
+</body>
+
+
+</html>

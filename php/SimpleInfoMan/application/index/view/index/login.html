@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>登录页面</title>
+	<!-- 引入Material Design所需的CSS和JS文件 -->
+	<link rel="stylesheet" href="../../../../public/static/css/materialize.css">
+	<link rel="stylesheet" href="../../../../public/static/css/icon.css">
+	<link rel="stylesheet" href="../../../../public/static/css/style.css">
+	<script src="../../../../public/static/js/jquery.main.js"></script>
+	<script src="../../../../public/static/js/materialize.js"></script>
+</head>
+
+<body onload="checklogined()">
+	<div class="container">
+
+		<h3>欢迎登录</h3>
+
+		<form action="" method="post" id="login">
+			<div class="input-field">
+				<i class="material-icons prefix">account_circle</i>
+				<input type="text" id="username" name="username" required>
+				<label for="username">用户名</label>
+			</div>
+			<div class="input-field">
+				<i class="material-icons prefix">lock</i>
+				<input type="password" id="password" name="password" autocomplete="section-blue shipping street-address"
+					required>
+				<label for="password">密码</label>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit">登录
+				<i class="material-icons right">send</i>
+			</button>
+		</form>
+
+		<p>还没有账号？<a href="register.html">立即注册</a></p>
+
+	</div>
+
+</body>
+<script>
+	function checklogined() {
+		<!-- todo:改成后端判断 -->
+		if (localStorage.getItem('token') && new Date(localStorage.getItem('expiration_time')).getTime() > Date.now())
+			document.body.innerHTML = ('<div class="container" style="background:yellowgreen;"><div class="mdc-card__content"><h3 class="mdc-typography--headline5">你已登录 正在跳转</h3></div></div>');
+
+		setTimeout(() => {
+			location.href = 'info.html';
+		}, 3000);
+	}
+
+	function Login(data) {
+		$.ajax({
+			url: "../../index/tools/login",
+			type: 'POST',
+			dataType: "json",
+			data: data,
+			success: function (res) {
+				if (res.code == 1) {
+					alert("登录成功！");
+					window.location.href = "info.html";
+					localStorage.setItem("token", res.data.token);
+					localStorage.setItem("expiration_time", res.data.expiration_time);
+				} else {
+					alert(res.data);
+				}
+			},
+			error: function (xhr, textStatus, errorThrown) {
+				alert(xhr.responseText);
+			}
+		});
+	}
+	$(function () {
+		$('#login').on('submit', function (event) {
+			event.preventDefault(); // 阻止默认行为
+			var form = $(this);
+			var data = form.serializeArray();
+			Login(data);
+			console.table(data);
+		});
+	})
+</script>
+
+</html>

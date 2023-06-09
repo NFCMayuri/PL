@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>注册页面</title>
+	<!-- 引入Material Design所需的CSS和JS文件 -->
+	<link rel="stylesheet" href="../../../../public/static/css/materialize.css">
+	<link rel="stylesheet" href="../../../../public/static/css/icon.css">
+	<link rel="stylesheet" href="../../../../public/static/css/style.css">
+	<script src="../../../../public/static/js/jquery.main.js"></script>
+	<script src="../../../../public/static/js/materialize.js"></script>
+</head>
+
+<body>
+	<div class="container">
+
+		<h3>欢迎注册</h3>
+
+		<form id="register" action="" method="post">
+			<div class="input-field">
+				<i class="material-icons prefix">account_circle</i>
+				<input type="text" id="username" name="username" required>
+				<label for="username">用户名</label>
+			</div>
+			<div class="input-field">
+				<i class="material-icons prefix">lock</i>
+				<input type="password" id="password" name="password" required>
+				<label for="password">密码</label>
+			</div>
+			<div class="input-field">
+				<i class="material-icons prefix">email</i>
+				<label for="email">邮箱</label>
+				<input type="email" id="email" name="email" required>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit" name="action">注册
+				<i class="material-icons right">send</i>
+			</button>
+		</form>
+
+		<p>已有账号？<a href="login.html">立即登录</a></p>
+
+	</div>
+
+</body>
+<script>
+	function Register(Data) {
+		$.ajax({
+			url: "../../index/tools/register",
+			method: "post",
+			data: Data,
+			success(res) {
+				document.body.innerHTML = ('<div class="container" style="background:yellowgreen;"><div class="mdc-card__content"><h3 class="mdc-typography--headline5">注册成功！</h3></div></div>');
+				setTimeout(() => {
+					location.href = 'login.html';
+				}, 3000);
+			},
+			error(res) {
+				document.body.innerHTML = ('<div class="container" style="background:red;"><div class="mdc-card__content"><h3 class="mdc-typography--headline5">注册失败！</h3></div></div>');
+				setTimeout(() => {
+					location.reload();
+				}, 3000);
+			},
+		})
+	}
+
+	$(function () {
+		$('#register').on('submit', function (event) {
+			event.preventDefault(); // 阻止默认行为
+			var form = $(this);
+			var data = form.serializeArray();
+			Register(data);
+			console.table(data);
+		});
+	})
+</script>
+
+</html>
