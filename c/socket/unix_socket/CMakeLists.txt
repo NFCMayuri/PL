@@ -1,0 +1,10 @@
+project(UNIX_SOCKET_EXAMPLE)
+cmake_minimum_required(VERSION 3.0)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} --std=c2x -g -Wall")
+set(CMAKE_BUILD_TYPE Debug)
+# aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src DIR_SRC)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+add_executable(client ${CMAKE_CURRENT_SOURCE_DIR}/src/client.c)
+add_executable(server ${CMAKE_CURRENT_SOURCE_DIR}/src/server.c)
