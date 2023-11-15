@@ -1,12 +1,12 @@
 [
 {
   "directory": "/home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/build",
-  "command": "/usr/bin/cc  -I/home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/include -g --std=c2x -g -Wall -o CMakeFiles/client.dir/src/client.c.o -c /home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/src/client.c",
+  "command": "/etc/profiles/per-user/nixos/bin/gcc -I/home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/include -g --std=c2x -g -Wall -o CMakeFiles/client.dir/src/client.c.o -c /home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/src/client.c",
   "file": "/home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/src/client.c"
 },
 {
   "directory": "/home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/build",
-  "command": "/usr/bin/cc  -I/home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/include -g --std=c2x -g -Wall -o CMakeFiles/server.dir/src/server.c.o -c /home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/src/server.c",
+  "command": "/etc/profiles/per-user/nixos/bin/gcc -I/home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/include -g --std=c2x -g -Wall -o CMakeFiles/server.dir/src/server.c.o -c /home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/src/server.c",
   "file": "/home/nixos/Documents/code/ProgramLearning/c/socket/unix_socket/src/server.c"
 }
 ]
