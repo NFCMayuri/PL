@@ -2,7 +2,13 @@
 
 #define length_of_array(array) sizeof(array) / sizeof(array[0])
 
+#ifndef REC_IMP
+#define NO_REC_IMP
+#endif
+
+#if defined DEBUG
 static int reverse_times = 0;
+#endif
 
 // todo: use generic for c
 int reverse_array(int *array, int start, int end) {
@@ -27,10 +33,23 @@ int find_max_elem(int *array, int start, int end) {
   return max_elem;
 }
 
-#if defined no_rec_imp
+#if defined NO_REC_IMP
 
-int pancakeSort(int *unsorted_array, int sort_start, int sort_end) { return 0; }
-#else
+int pancakeSort(int *unsorted_array, int sort_start, int sort_end) {
+  int max_elem;
+  int unsorted_end = sort_end;
+  for (; unsorted_end > 0; unsorted_end--) {
+    max_elem = find_max_elem(unsorted_array, sort_start, unsorted_end);
+    reverse_array(unsorted_array, sort_start, max_elem);
+    reverse_array(unsorted_array, sort_start, unsorted_end);
+  }
+  return 0;
+}
+
+#endif
+
+#if defined REC_IMP
+
 
 int pancakeSort(int *unsorted_array, int start, int end) {
   int max_elem = find_max_elem(unsorted_array, start, end);
@@ -38,24 +57,29 @@ int pancakeSort(int *unsorted_array, int start, int end) {
     return 0;
   }
   reverse_array(unsorted_array, start, max_elem);
-  /*
+
+#if defined DEBUG
   reverse_times++;
-  printf("the %d times reverse:",reverse_times);
-  for(int i = start;i<=end;i++)
-    printf("%d ",unsorted_array[i]);
+  printf("the %d times reverse:", reverse_times);
+  for (int i = start; i <= end; i++)
+    printf("%d ", unsorted_array[i]);
   printf("\n");
-  */
+#endif
+
   reverse_array(unsorted_array, start, end);
   pancakeSort(unsorted_array, start, end - 1);
-  /*
+
+#if defined DEBUG
   reverse_times++;
-  printf("the %d times reverse:",reverse_times);
-  for(int i = start;i<=end;i++)
-    printf("%d ",unsorted_array[i]);
+  printf("the %d times reverse:", reverse_times);
+  for (int i = start; i <= end; i++)
+    printf("%d ", unsorted_array[i]);
   printf("\n");
-  */
+#endif
+
   return 0;
 }
+
 
 #endif
 

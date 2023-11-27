@@ -3,8 +3,12 @@
 #define length_of_array(array) sizeof(array) / sizeof(array[0])
 
 static int reverse_times = 0;
+// #define REC_IMP
+#ifndef REC_IMP
+#define NO_REC_IMP
+#endif
 
-// todo: use generic for c
+// generic
 int reverse_array(void *array, size_t len, size_t elem_byte_size,
                   int (*swap_function)(const void *a, const void *b)) {
   size_t i;
@@ -15,6 +19,7 @@ int reverse_array(void *array, size_t len, size_t elem_byte_size,
   return 0;
 }
 
+// generic
 int find_max_elem(void *array, size_t len, size_t elem_byte_size,
                   int (*compare_function)(const void *a, const void *b)) {
   size_t max_elem = 0;
@@ -37,18 +42,35 @@ int swap_int(const void *a, const void *b) {
   return 0;
 }
 
-#if defined no_rec_imp
+#if defined NO_REC_IMP
 
-int pancakeSort(int *unsorted_array, int sort_start, int sort_end) { return 0; }
-#else
+// generic
+int pancakeSort(void *unsorted_array, size_t len, size_t elem_byte_size,
+                int (*compare_function)(const void *a, const void *b),
+                int (*swap_function)(const void *a, const void *b)) {
+  size_t max_elem;
+  size_t unsorted_len = len;
+  for (; unsorted_len > 0; unsorted_len--) {
+    max_elem = find_max_elem(unsorted_array, unsorted_len, elem_byte_size,
+                             compare_int);
+    reverse_array(unsorted_array, max_elem + 1, elem_byte_size, swap_int);
+    reverse_array(unsorted_array, unsorted_len, elem_byte_size, swap_int);
+  }
+  return 0;
+}
 
+#endif
+
+#if defined REC_IMP
+
+// generic
 int pancakeSort(void *unsorted_array, size_t len, size_t elem_byte_size,
                 int (*compare_function)(const void *a, const void *b),
                 int (*swap_function)(const void *a, const void *b)) {
   if (len == 1) {
     return 0;
   }
-  int max_elem =
+  size_t max_elem =
       find_max_elem(unsorted_array, len, elem_byte_size, compare_function);
   reverse_array(unsorted_array, max_elem + 1, elem_byte_size, swap_function);
   reverse_array(unsorted_array, len, elem_byte_size, swap_function);
@@ -62,7 +84,7 @@ int pancakeSort(void *unsorted_array, size_t len, size_t elem_byte_size,
 
 int main() {
   int array1[] = {5, 2, 1, 0, 3, 2, 9}; // {5,2,1,0,3,2*,9} => {0,1,2,2*,3,5,9}
-  int i;
+  size_t i;
 
   printf("before sort: ");
   for (i = 0; i < length_of_array(array1); i++)
