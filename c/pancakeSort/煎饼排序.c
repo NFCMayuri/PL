@@ -88,16 +88,6 @@ int pancakeSort(void *unsorted_array, size_t len, size_t elem_byte_size,
 int main() {
   int array1[] = {5, 2, 1, 0, 3, 2, 9}; // {5,2,1,0,3,2*,9} => {0,1,2,2*,3,5,9}
   size_t i;
+  size_t result[length_of_array(array1)*2];
 
-  printf("before sort: ");
-  for (i = 0; i < length_of_array(array1); i++)
-    printf("%d ", array1[i]);
-  printf("\n");
-
-  pancakeSort(array1, length_of_array(array1), sizeof(int) / sizeof(char),
-              compare_int, swap_int);
-
-  printf("after sort:  ");
-  for (i = 0; i < length_of_array(array1); i++)
-    printf("%d ", array1[i]);
 }
