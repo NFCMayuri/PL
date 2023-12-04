@@ -2,14 +2,14 @@
 
 #define length_of_array(array) sizeof(array) / sizeof(array[0])
 
-#if defined DEBUG
 static int reverse_times = 0;
-#endif
 
 // #define REC_IMP
 #ifndef REC_IMP
 #define NO_REC_IMP
 #endif
+
+static size_t *result_p;
 
 // generic
 int reverse_array(void *array, size_t len, size_t elem_byte_size,
@@ -56,7 +56,11 @@ int pancakeSort(void *unsorted_array, size_t len, size_t elem_byte_size,
   for (; unsorted_len > 0; unsorted_len--) {
     max_elem = find_max_elem(unsorted_array, unsorted_len, elem_byte_size,
                              compare_int);
+    result_p[reverse_times] = max_elem + 1;
+    reverse_times++;
     reverse_array(unsorted_array, max_elem + 1, elem_byte_size, swap_int);
+    result_p[reverse_times] = unsorted_len;
+    reverse_times++;
     reverse_array(unsorted_array, unsorted_len, elem_byte_size, swap_int);
   }
   return 0;
@@ -86,8 +90,18 @@ int pancakeSort(void *unsorted_array, size_t len, size_t elem_byte_size,
 #endif
 
 int main() {
-  int array1[] = {5, 2, 1, 0, 3, 2, 9}; // {5,2,1,0,3,2*,9} => {0,1,2,2*,3,5,9}
+  int array1[] = {5, 2, 1, 0,
+                  3, 2, 9}; // want: {5,2,1,0,3,2*,9} => {0,1,2,2*,3,5,9}
   size_t i;
-  size_t result[length_of_array(array1)*2];
-
+  size_t result[length_of_array(array1) * 2];
+  result_p = result;
+  pancakeSort(array1, length_of_array(array1), sizeof(int) / sizeof(char),
+              compare_int, swap_int);
+  printf("k值序列:");
+  for (i = 0; i < reverse_times; i++) {
+    printf("%zu ", result[i]);
+  }
+  printf("\n排序结果:");
+  for (i = 0; i < length_of_array(array1); i++)
+    printf("%d ", array1[i]);
 }

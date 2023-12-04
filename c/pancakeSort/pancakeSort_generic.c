@@ -2,6 +2,7 @@
 
 #define length_of_array(array) sizeof(array) / sizeof(array[0])
 
+// #define DEBUG
 #if defined DEBUG
 static int reverse_times = 0;
 #endif

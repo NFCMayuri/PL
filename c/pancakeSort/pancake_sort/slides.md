@@ -1,7 +1,5 @@
 ---
-author: 测试
-date: 12 01, 2023
-paging: Slide %d / %d
+title: 煎饼排序(pancake sort)
 ---
 
 # 煎饼排序(pancake sort)
@@ -16,7 +14,7 @@ paging: Slide %d / %d
 
 ---
 
-## 题目:
+## 题目要求
 
 给你一个整数数组  `arr` ，请使用 _煎饼翻转_ 完成对数组的排序。
 
@@ -39,7 +37,9 @@ paging: Slide %d / %d
 
 ---
 
-## 尝试解决子问题:将最大元素移动到无序部分的底部
+## 尝试解决子问题:
+
+> 将最大元素移动到无序部分的底部
 
 ### 考虑[3,2,1,4]的一般解法
 
@@ -140,7 +140,7 @@ int find_max_elem(int *array, int start, int end) {
 
 ## 纯 C 语言实现(非泛型)(续)
 
-```c
+```c {all|6-8|14,18-20|all}
 // 非递归煎饼排序
 int pancakeSort_no_rec(int *unsorted_array, int sort_start, int sort_end) {
   int max_elem;
@@ -200,7 +200,7 @@ int find_max_elem(void *array, size_t len, size_t elem_byte_size,
 
 ## 纯 C 语言实现(泛型)(续)
 
-```c
+```c {all|8-11|all}
 // 非递归煎饼排序
 int pancakeSort_no_rec(void *unsorted_array, size_t len, size_t elem_byte_size,
                 int (*compare_function)(const void *a, const void *b),
@@ -221,7 +221,7 @@ int pancakeSort_no_rec(void *unsorted_array, size_t len, size_t elem_byte_size,
 
 ## 纯 C 语言实现(泛型)(续)
 
-```c
+```c {all|8-13|all}
 // 递归煎饼排序
 int pancakeSort_rec(void *unsorted_array, size_t len, size_t elem_byte_size,
                 int (*compare_function)(const void *a, const void *b),
@@ -246,3 +246,15 @@ int pancakeSort_rec(void *unsorted_array, size_t len, size_t elem_byte_size,
 
 - 当最大元素本来就在无序部分底部时无需进行煎饼翻转, 可直接进行扩展有序部分
 - 当最大元素本来就在无序部分顶部时只需翻转一次
+
+---
+
+## 代码运行截图
+
+![替代文本](Screenshot_2023-12-03-18-49-20_5200.png)
+
+---
+
+# That's all
+
+Thanks
