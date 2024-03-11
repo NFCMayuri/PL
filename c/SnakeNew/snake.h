@@ -8,15 +8,7 @@
 #include "sleep.h"
 #include <stdio.h>
 #include <stdlib.h>
-#if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
-#include <conio.h>
-#include <handleapi.h>
-#include <processthreadsapi.h>
-#include <windows.h>
-#elif defined(__linux__) || defined(__gnu_linux__)
-#include <pthread.h>
-#elif defined(__APPLE__)
-#endif
+#include <time.h>
 
 /* Print String At (x,y) and make Cursor go to another place */
 
@@ -69,7 +61,8 @@ _Bool canEat() {
 
 // exec when(before) moving
 int isFail() {
-  if (snake[0] < &map[0][0] || snake[0] > &map[HEIGHT - 1][WIDTH - 1] ||
+  if (snake[0] - WIDTH < &map[0][0] && direction == 2 ||
+      snake[0] + WIDTH > &map[HEIGHT - 1][WIDTH - 1] && direction == -2 ||
       direction == 1 && (snake[0] - map[0]) % WIDTH == WIDTH - 1 ||
       direction == -1 &&
           (snake[0] - map[0]) % WIDTH == 0) // snake is not in the matrix

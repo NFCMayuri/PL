@@ -1,7 +1,7 @@
 #include "snake.h"
 #include "canonical_mode.h"
 #include "key_monitor.h"
-#include "threads.h"
+#include <threads.h>
 int main() {
   disable_canonical_mode();
   thrd_t thr;

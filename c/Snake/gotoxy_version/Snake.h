@@ -91,8 +91,11 @@ _Bool canEat()
 // exec when(before) moving
 int isFail()
 {
-    if (p[0] < &a[0][0] ||
-        p[0] > &a[HEIGHT - 1][WIDTH - 1]) // snake is not in the matrix
+    if (p[0] - WIDTH < &a[0][0] && direction == 2 ||
+      p[0] + WIDTH > &a[HEIGHT - 1][WIDTH - 1] && direction == -2 ||
+      direction == 1 && (p[0] - a[0]) % WIDTH == WIDTH - 1 ||
+      direction == -1 &&
+          (p[0] - a[0]) % WIDTH == 0) // snake is not in the matrix
     {
         direction = 0;
         return 1;

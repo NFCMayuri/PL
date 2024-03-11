@@ -1,16 +1,17 @@
 #ifndef _CANONICAL_MODE_H
 #define _CANONICAL_MODE_H
 
-#include <termios.h>
-#include <unistd.h>
-
-struct termios old_termios; // 全局变量存储旧的终端设置
 
 int disable_canonical_mode();
 int restore_terminal_settings();
 
-
+#include <stdio.h>
 #if defined(__linux__) || defined(__gnu_linux__)
+
+#include <termios.h>
+#include <unistd.h>
+struct termios old_termios; // 全局变量存储旧的终端设置
+
 int disable_canonical_mode() {
   struct termios new_termios;
 
@@ -27,7 +28,7 @@ int restore_terminal_settings() {
   return 0;
 }
 #elif defined(__APPLE__)
-void disable_canonical_mode() {
+int disable_canonical_mode() {
   struct termios new_termios;
 
   tcgetattr(STDIN_FILENO, &old_termios);
@@ -37,12 +38,13 @@ void disable_canonical_mode() {
   tcsetattr(STDIN_FILENO, TCSANOW, &new_termios);
 }
 
-void restore_terminal_settings() {
+int restore_terminal_settings() {
   tcsetattr(STDIN_FILENO, TCSANOW, &old_termios);
 }
 #elif defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
+#include <windows.h>
+DWORD originalMode;
 int disable_canonical_mode() {
-  DWORD mode;
   HANDLE hInput;
 
   hInput = GetStdHandle(STD_INPUT_HANDLE);
@@ -53,13 +55,13 @@ int disable_canonical_mode() {
   }
 
   // 获取当前控制台模式
-  if (!GetConsoleMode(hInput, &mode)) {
+  if (!GetConsoleMode(hInput, &originalMode)) {
     fprintf(stderr, "Error getting console mode\n");
     return 1;
   }
 
   // 禁用规范模式
-  DWORD newMode = mode & ~(ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT);
+  DWORD newMode = originalMode & ~(ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT);
   if (!SetConsoleMode(hInput, newMode)) {
     fprintf(stderr, "Error setting console mode\n");
     return 1;
@@ -68,7 +70,7 @@ int disable_canonical_mode() {
   return 0;
 }
 
-int restore_terminal_settings(DWORD originalMode) {
+int restore_terminal_settings() {
   HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
 
   if (hInput == INVALID_HANDLE_VALUE) {
