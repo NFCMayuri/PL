@@ -2,54 +2,53 @@
 #define _SLEEP_H
 
 #if defined(__linux__)
-	// Linux
-	#include<unistd.h>
+// Linux
+#include <unistd.h>
 #elif defined(__APPLE__)
-    // MacOS
-	#include<unistd.h>
+// MacOS
+#include <unistd.h>
 #elif defined(_WIN32)
-	// Windows
-	#include<windows.h>
+// Windows
+#include <windows.h>
 #endif
 
 void s_sleep(int time) {
 #if defined(__linux__)
-	// Linux
-	sleep(time);
+  // Linux
+  sleep(time);
 #elif defined(__APPLE__)
-    // MacOS
-    sleep(time);
+  // MacOS
+  sleep(time);
 #elif defined(_WIN32)
-	// Windows
-	Sleep((time*1000));
+  // Windows
+  Sleep((time * 1000));
 #endif
 }
 
-
 void ms_sleep(int time) {
 #if defined(__linux__)
-	// Linux
-	usleep(time*1000);
+  // Linux
+  usleep(time * 1000);
 #elif defined(__APPLE__)
-    // MacOS
-    usleep(time*1000);
+  // MacOS
+  usleep(time * 1000);
 #elif defined(_WIN32)
-	// Windows
-	Sleep(time);
+  // Windows
+  Sleep(time);
 #endif
 }
 
 void us_sleep(int time) {
 #if defined(__linux__)
-	// Linux
-	usleep(time);
+  // Linux
+  usleep(time);
 #elif defined(__APPLE__)
-    // MacOS
-    usleep(time);
+  // MacOS
+  usleep(time);
 #elif defined(_WIN32)
-	// Windows
-	// Sleep(time/1000);
-	_Static_assert(1 == 0, "unimplemented");
+  // Windows
+  // Sleep(time/1000);
+  _Static_assert(1 == 0, "unimplemented");
 #endif
 }
 
