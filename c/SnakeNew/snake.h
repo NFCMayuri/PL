@@ -2,15 +2,12 @@
 #define _SNAKE_H
 #include <stdio.h>
 #include <stdlib.h>
-#include "Clear.h"
-#include "GetXYFromArrays.h"
-#include "GlobalVar.h"
-#include "GotoXY.h"
-#include "KeyMonitor.h"
-#include "Move.h"
-#include "Random.h"
-#include "ShowMap.h"
-#include "Sleep.h"
+#include "clear.h"
+#include "global_var.h"
+#include "key_monitor.h"
+#include "move.h"
+#include "show_map.h"
+#include "sleep.h"
 #if defined(_WIN16) || defined(_WIN32) || defined(_WIN64)
 #include <conio.h>
 #include <handleapi.h>
@@ -22,30 +19,20 @@
 #endif
 
 /* Print String At (x,y) and make Cursor go to another place */
-#define PRINT_STRING_XY(x, y, content)                                         \
-    {                                                                          \
-        gotoxy((x), (y));                                                      \
-        printf("%s", (content));                                               \
-        gotoxy(HEIGHT + 7, 40);                                                \
-    }
 
 /* Random Food */
-#define RandomApple()                                                          \
-    {                                                                          \
-        srand(time(NULL));                                                     \
-        do                                                                     \
-        {                                                                      \
-            i = rand() % HEIGHT;                                               \
-            j = rand() % WIDTH;                                                \
-            /* if random location is 0 ->*;else find again and again*/         \
-        } while (a[i][j] != 0);                                                \
-        a[i][j] = '*';                                                         \
-        PRINT_STRING_XY(((GETX_CHAR((a[0]), (&a[i][j]), (WIDTH))) + 2),        \
-                        ((GETY_CHAR((a[0]), (&a[i][j]), (WIDTH))) * 2), "*");  \
-        gotoxy(0, 62);                                                         \
-        printf("Food is at (%02d,%02d)", i, j);                                \
-        gotoxy(HEIGHT + 7, 40);                                                \
-    }
+inline void RandomApple()
+{
+    srand(time(NULL));
+    do
+    {
+        i = rand() % HEIGHT;
+        j = rand() %
+            WIDTH; /* if random location is 0 ->*;else find again and again*/
+    } while (a[i][j] != 0);
+    a[i][j] = '*';
+    // printf("Food is at (%02d,%02d)\n", i, j);
+}
 
 // exec when(before) moving
 _Bool canEat()
@@ -150,7 +137,6 @@ int isFail()
                 {
                     if ((p[0] + WIDTH) == p[i]) // Down of the head is body
                     {
-                        gotoxy(27, 0);
                         direction = 0;
                         return 2;
                     }
@@ -162,11 +148,14 @@ int isFail()
     }
     return 0;
 }
-
-#define CheckInput()                                                           \
-    if (direction != -directiontemp)                                           \
-    {                                                                          \
-        direction = directiontemp;                                             \
+inline void CheckInput()
+{
+    if (direction != -directiontemp)
+    {
+        direction = directiontemp;
     }
+}
 
 #endif /* _SNAKE_H */
+void RandomApple();
+void CheckInput();

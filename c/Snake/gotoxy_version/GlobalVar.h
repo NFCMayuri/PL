@@ -17,8 +17,8 @@ char *p[HEIGHT * WIDTH] = {&a[0][3], &a[0][2], &a[0][1],
 
 int n = 3; // The length of snake body (without head)
 int i, j;
-char direction = 1;     // 1.Right;2.Up;-1.Left;-2.Down;0.Exit
-char directiontemp = 1; // 1.Right;2.Up;-1.Left;-2.Down;0.Exit
+signed char direction = 1;     // 1.Right;2.Up;-1.Left;-2.Down;0.Exit
+signed char directiontemp = 1; // 1.Right;2.Up;-1.Left;-2.Down;0.Exit
 int delay = 200;        // delay 0.2s(200ms)
 bool isPause = 0;
 #endif /* _GLOBALVAR_H */

@@ -11,5 +11,6 @@
 #include <pthread.h>
 #define SLEEPS(delay) usleep((delay)*1000)
 #elif defined(__APPLE__)
+#define SLEEPS(delay) usleep((delay)*1000)
 #endif
 #endif /* _SLEEP_H */
