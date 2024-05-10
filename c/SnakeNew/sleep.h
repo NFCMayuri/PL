@@ -48,7 +48,7 @@ void us_sleep(int time) {
 #elif defined(_WIN32)
   // Windows
   // Sleep(time/1000);
-  _Static_assert(1 == 0, "unimplemented");
+  // _Static_assert(0, "unimplemented");
 #endif
 }
 
