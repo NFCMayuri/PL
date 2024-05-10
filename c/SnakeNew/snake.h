@@ -61,7 +61,8 @@ int canEat() {
 
 // exec when(before) moving
 int isFail() {
-  if (snake[0] < &map[0][0] || snake[0] > &map[HEIGHT - 1][WIDTH - 1] ||
+  if (snake[0] - WIDTH < &map[0][0] && direction == 2 ||
+      snake[0] + WIDTH > &map[HEIGHT - 1][WIDTH - 1] && direction == -2 ||
       direction == 1 && (snake[0] - map[0]) % WIDTH == WIDTH - 1 ||
       direction == -1 &&
           (snake[0] - map[0]) % WIDTH == 0) // snake is not in the matrix
